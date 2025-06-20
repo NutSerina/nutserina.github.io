@@ -3,20 +3,14 @@
 body {
   font-family: 'LXGW WenKai Screen', 'Noto Sans SC', sans-serif;
 }
-nav .logo {
+.logo img {
+  border-radius: 50%;
+  object-fit: cover;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
+  border: 2px solid #fff;
+  box-shadow: 0 0 4px rgba(0,0,0,0.15);
 }
-
-nav .logo img {
-  width: 100% !important;
-  height: 100% !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
-}
-
 /*设置背景渐变*/
 .top-img {
   background-color: #f5f7fa; /* 柔和背景，避免纯蓝突兀 */
