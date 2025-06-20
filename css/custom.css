@@ -1,0 +1,33 @@
+@import url('https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-screen-webfont/1.1.0/style.css');
+
+body {
+  font-family: 'LXGW WenKai Screen', 'Noto Sans SC', sans-serif;
+}
+nav .logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+nav .logo img {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+
+/*设置背景渐变*/
+.top-img {
+  background-color: #f5f7fa; /* 柔和背景，避免纯蓝突兀 */
+  transition: background-image 0.5s ease-in-out;
+  filter: blur(10px);
+  animation: fadeInTopImg 1s ease-in-out forwards;
+}
+
+@keyframes fadeInTopImg {
+  to {
+    filter: blur(0);
+  }
+}
+
