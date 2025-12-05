@@ -1,1 +1,22 @@
-mixins.crypto={data(){return{crypto:"",cryptoStatus:""}},watch:{crypto(t){var r=this.$refs.crypto,s=this.$refs.content,{encrypted:r,shasum:c}=r.dataset;try{var a=CryptoJS.AES.decrypt(r,t).toString(CryptoJS.enc.Utf8);CryptoJS.SHA256(a).toString()===c?(this.cryptoStatus="success",s.innerHTML=a,this.render()):this.cryptoStatus="failure"}catch{this.cryptoStatus="failure"}}}};
+mixins.crypto = {
+    data() {
+        return { crypto: "", cryptoStatus: "" };
+    },
+    watch: {
+        crypto(value) {
+            let input = this.$refs.crypto,
+                content = this.$refs.content;
+            let { encrypted, shasum } = input.dataset;
+            try {
+                let decrypted = CryptoJS.AES.decrypt(encrypted, value).toString(CryptoJS.enc.Utf8);
+                if (CryptoJS.SHA256(decrypted).toString() === shasum) {
+                    this.cryptoStatus = "success";
+                    content.innerHTML = decrypted;
+                    this.render();
+                } else this.cryptoStatus = "failure";
+            } catch {
+                this.cryptoStatus = "failure";
+            }
+        },
+    },
+};

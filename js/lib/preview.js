@@ -1,1 +1,27 @@
-mixins.preview={data(){return{previewShow:!1}},created(){this.renderers.push(this.preview)},methods:{preview(){let e=this.$refs.preview,i=this.$refs.previewContent;for(let e of document.querySelectorAll("img"))e.addEventListener("click",()=>{i.alt=e.alt,i.src=e.src,this.previewShow=!0});e.addEventListener("click",()=>{this.previewShow=!1}),window.addEventListener("resize",()=>{this.previewShow=!1})}}};
+mixins.preview = {
+    data() {
+        return { previewShow: false };
+    },
+    created() {
+        this.renderers.push(this.preview);
+    },
+    methods: {
+        preview() {
+            let preview = this.$refs.preview,
+                content = this.$refs.previewContent;
+            let images = document.querySelectorAll("img");
+            for (let i of images)
+                i.addEventListener("click", () => {
+                    content.alt = i.alt;
+                    content.src = i.src;
+                    this.previewShow = true;
+                });
+            preview.addEventListener("click", () => {
+                this.previewShow = false;
+            });
+            window.addEventListener("resize", () => {
+                this.previewShow = false;
+            });
+        },
+    },
+};
