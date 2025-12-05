@@ -1,14 +1,1 @@
-mixins.home = {
-    mounted() {
-        let background = this.$refs.homeBackground;
-        let images = background.dataset.images.split(",");
-        let id = Math.floor(Math.random() * images.length);
-        background.style.backgroundImage = `url('${images[id]}')`;
-        this.menuColor = true;
-    },
-    methods: {
-        homeClick() {
-            window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
-        },
-    },
-};
+mixins.home={mounted(){var o=this.$refs.homeBackground,e=o.dataset.images.split(","),t=Math.floor(Math.random()*e.length);o.style.backgroundImage=`url('${e[t]}')`,this.menuColor=!0},methods:{homeClick(){window.scrollTo({top:window.innerHeight,behavior:"smooth"})}}};

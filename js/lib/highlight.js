@@ -1,47 +1,8 @@
-mixins.highlight = {
-    data() {
-        return { copying: false };
-    },
-    created() {
-        hljs.configure({ ignoreUnescapedHTML: true });
-        this.renderers.push(this.highlight);
-    },
-    methods: {
-        sleep(ms) {
-            return new Promise((resolve) => setTimeout(resolve, ms));
-        },
-        highlight() {
-            let codes = document.querySelectorAll("pre");
-            for (let i of codes) {
-                let code = i.textContent;
-                let language = [...i.classList, ...i.firstChild.classList][0] || "plaintext";
-                let highlighted;
-                try {
-                    highlighted = hljs.highlight(code, { language }).value;
-                } catch {
-                    highlighted = code;
-                }
-                i.innerHTML = `
-                <div class="code-content hljs">${highlighted}</div>
-                <div class="language">${language}</div>
+mixins.highlight={data(){return{copying:!1}},created(){hljs.configure({ignoreUnescapedHTML:!0}),this.renderers.push(this.highlight)},methods:{sleep(i){return new Promise(e=>setTimeout(e,i))},highlight(){var t;for(t of document.querySelectorAll("pre")){let e=t.textContent;var c=[...t.classList,...t.firstChild.classList][0]||"plaintext";let i;try{i=hljs.highlight(e,{language:c}).value}catch{i=e}t.innerHTML=`
+                <div class="code-content hljs">${i}</div>
+                <div class="language">${c}</div>
                 <div class="copycode">
                     <i class="fa-solid fa-copy fa-fw"></i>
                     <i class="fa-solid fa-check fa-fw"></i>
                 </div>
-                `;
-                let content = i.querySelector(".code-content");
-                hljs.lineNumbersBlock(content, { singleLine: true });
-                let copycode = i.querySelector(".copycode");
-                copycode.addEventListener("click", async () => {
-                    if (this.copying) return;
-                    this.copying = true;
-                    copycode.classList.add("copied");
-                    await navigator.clipboard.writeText(code);
-                    await this.sleep(1000);
-                    copycode.classList.remove("copied");
-                    this.copying = false;
-                });
-            }
-        },
-    },
-};
+                `;c=t.querySelector(".code-content");hljs.lineNumbersBlock(c,{singleLine:!0});let s=t.querySelector(".copycode");s.addEventListener("click",async()=>{this.copying||(this.copying=!0,s.classList.add("copied"),await navigator.clipboard.writeText(e),await this.sleep(1e3),s.classList.remove("copied"),this.copying=!1)})}}}};
