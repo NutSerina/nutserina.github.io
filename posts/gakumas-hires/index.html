@@ -1,0 +1,467 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>学园偶像大师Hi-Res整理聚合贴 | SerinaP&#39;s Blog</title>
+    <meta name="author" content="芹菜P" />
+    <meta name="description" content="已经不再是低眉顺眼的昨日，从今天开始我的传说" />
+    <meta name="keywords" content="blog, 博客, 个人博客, 芹菜P, 偶像大师, THE iDOLM@STER" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>SERINAP&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;SERINAP&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>学园偶像大师Hi-Res整理聚合贴</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/6
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                资源分享
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%81%B6%E5%83%8F%E5%A4%A7%E5%B8%88/" style="color: #ffa2c4">
+                    偶像大师
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%AD%A6%E5%9B%AD%E5%81%B6%E5%83%8F%E5%A4%A7%E5%B8%88/" style="color: #00bcd4">
+                    学园偶像大师
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Hi-Res/" style="color: #ffa2c4">
+                    Hi-Res
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong>本页所有Hires资源均由wfhtony自购，感谢大佬！</strong></p>
+<h1 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h1><p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1s0jVLa0cIBkYOpzLIHm-1w?pwd=imas">https://pan.baidu.com/s/1s0jVLa0cIBkYOpzLIHm-1w?pwd=imas</a><br>提取码: imas</p>
+<h1 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h1><p>搜索可以使用 <code>Ctrl+F</code>   </p>
+<h4 id="1-初阵公演"><a href="#1-初阵公演" class="headerlink" title="1 初阵公演"></a>1 初阵公演</h4><ul>
+<li>ENDLESS DANCE (葛城リーリヤ・倉本千奈・姫崎莉波 ver.).flac</li>
+<li>ENDLESS DANCE (花海佑芽・秦谷美鈴・十王星南 ver.).flac</li>
+<li>ENDLESS DANCE (花海咲季・月村手毬・藤田ことね ver.).flac</li>
+<li>ENDLESS DANCE (有村麻央・紫雲清夏・篠澤广 ver.).flac</li>
+<li>Howling over the World (葛城リーリヤ・倉本千奈・姫崎莉波 ver.).flac</li>
+<li>Howling over the World (花海佑芽・秦谷美鈴・十王星南 ver.).flac</li>
+<li>Howling over the World (花海咲季・月村手毬・藤田ことね ver.).flac</li>
+<li>Howling over the World (有村麻央・紫雲清夏・篠澤广 ver.).flac</li>
+<li>Howling over the World(花海咲季・月村手毬・藤田ことね ver.).flac</li>
+<li>ミラクルナナウ(゜∀゜)！ (葛城リーリヤ・倉本千奈・姫崎莉波 ver.).flac</li>
+<li>ミラクルナナウ(゜∀゜)！ (花海佑芽・秦谷美鈴・十王星南 ver.).flac</li>
+<li>ミラクルナナウ(゜∀゜)！(有村麻央・紫雲清夏・篠澤广 ver.).flac</li>
+<li>ミラクルナナウ(゜∀゜)！(花海咲季・月村手毬・藤田ことね ver.).flac</li>
+<li>がむしゃらに行こう！ (花海佑芽・秦谷美鈴・十王星南 ver.).flac</li>
+<li>がむしゃらに行こう！ (有村麻央・紫雲清夏・篠澤广 ver.).flac</li>
+<li>がむしゃらに行こう！(葛城リーリヤ・倉本千奈・姫崎莉波 ver.).flac</li>
+<li>がむしゃらに行こう！(花海咲季・月村手毬・藤田ことね ver.).flac</li>
+</ul>
+<h4 id="2-全体-团体曲"><a href="#2-全体-团体曲" class="headerlink" title="2 全体 &amp; 团体曲"></a>2 全体 &amp; 团体曲</h4><ul>
+<li>アイ NEED YOU(FOR WONDERFUL STORY).flac</li>
+<li>Campus mode!! (Dolby-Audio to 2ch).flac</li>
+<li>Campus mode!! (Dolby-Audio).m4a</li>
+<li>Campus mode!! (Remastered).flac</li>
+<li>Campus mode!!.flac</li>
+<li>Star-mine.flac</li>
+<li>初.flac</li>
+<li>標.flac</li>
+<li>雨上がりのアイリス.flac</li>
+</ul>
+<h4 id="3-个人曲-SOLO1"><a href="#3-个人曲-SOLO1" class="headerlink" title="3 个人曲 SOLO1"></a>3 个人曲 SOLO1</h4><ul>
+<li>The Rolling Riceball.flac</li>
+<li>The Rolling Riceball (Remastered).flac</li>
+<li>Tame-Lie-One-Step.flac</li>
+<li>Wonder Scale.flac</li>
+<li>世界一可愛い私.flac</li>
+<li>光景.flac</li>
+<li>小さな野望.flac</li>
+<li>ツキノカメ.flac</li>
+<li>白線.flac</li>
+<li>理論武装して.flac</li>
+<li>Fighting My Way.flac</li>
+<li>Fluorite.flac</li>
+<li>Luna say maybe.flac</li>
+<li>clumsy trick.flac</li>
+</ul>
+<h4 id="4-个人曲-SOLO2-A-B"><a href="#4-个人曲-SOLO2-A-B" class="headerlink" title="4 个人曲 SOLO2 (A &amp; B)"></a>4 个人曲 SOLO2 (A &amp; B)</h4><ul>
+<li>A面<ul>
+<li>アイヴイ.flac</li>
+<li>アイヴイ (Remastered).flac</li>
+<li>カクシタワタシ.flac</li>
+<li>コントラスト.flac</li>
+<li>Boom Boom Pow.flac</li>
+<li>Boom Boom Pow (Remastered).flac</li>
+<li>Feel Jewel Dream.flac</li>
+<li>L.U.V.flac</li>
+<li>Our Chant.flac</li>
+<li>Yellow Big Bang！.flac</li>
+<li>Yellow Big Bang！(Remastered).flac</li>
+<li>極光.flac</li>
+<li>日々、発见的ステップ！.flac</li>
+</ul>
+</li>
+<li>B面<ul>
+<li>EGO.flac</li>
+<li>Kira Kira.flac</li>
+<li>Top Secret.flac</li>
+<li>Unhappy Light.flac</li>
+<li>ふわふわ.flac</li>
+<li>コンテンポラリのダンス.flac</li>
+<li>ときめきのソルフェージュ.flac</li>
+<li>歌声は君いろ.flac</li>
+<li>Fragile Heart.flac</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-生日曲"><a href="#5-生日曲" class="headerlink" title="5 生日曲"></a>5 生日曲</h4><ul>
+<li>たいせつなもの_37585443.flac</li>
+<li>つよつよ最强エクササイズ_38539383.flac</li>
+<li>メクルメ_37141490.flac</li>
+<li>Ride on Beat_36653977.flac</li>
+<li>Wake up!!.flac</li>
+<li>叶えたい、ことばかり.flac</li>
+<li>叶えたい、ことばかり (Remastered).flac</li>
+<li>憧れをいっぱい.flac</li>
+<li>Cosmetic_36925222.flac</li>
+<li>Sweet Magic_37305112.flac</li>
+<li>The Cute!!!_39020067.flac</li>
+<li>Try it now_38539380.flac</li>
+<li>marble heart_38096431.flac</li>
+</ul>
+<h4 id="6-个人曲-SOLO3"><a href="#6-个人曲-SOLO3" class="headerlink" title="6 个人曲 SOLO3"></a>6 个人曲 SOLO3</h4><ul>
+<li>サンフェーデッド_40156009.flac</li>
+<li>36℃ U・B・U.flac</li>
+<li>Love &amp; Joy_39763981.flac</li>
+<li>見て.flac</li>
+<li>空と约束.flac</li>
+<li>自己肯定感爆上げ↑↑しゅきしゅきソング_40305458.flac</li>
+</ul>
+<h4 id="7-季节曲"><a href="#7-季节曲" class="headerlink" title="7 季节曲"></a>7 季节曲</h4><ul>
+<li>キミとセミブルー.flac</li>
+<li>冠菊.flac</li>
+<li>仮装狂騒曲.flac</li>
+<li>ハッピーミルフィーユ_37585436.flac</li>
+<li>桜フォトグラフ_38539375.flac</li>
+<li>白 Night! White Wish!_36887861.flac</li>
+<li>雪解けに_38040888.flac</li>
+</ul>
+<h4 id="8-活动曲"><a href="#8-活动曲" class="headerlink" title="8 活动曲"></a>8 活动曲</h4><ul>
+<li>SUPREMACY.flac</li>
+<li>ナイワ.flac</li>
+<li>Let’s GO!! ICHI-NO-NI!!.flac</li>
+<li>古今东西ちょちょいのちょい (花海咲季・月村手毬・藤田ことね ver.).flac</li>
+</ul>
+<h3 id="以防有人需要伴奏"><a href="#以防有人需要伴奏" class="headerlink" title="以防有人需要伴奏"></a>以防有人需要伴奏</h3><pre><code>  - アイヴイ [Instrumental].flac
+  - アイヴイ [Instrumental] (2).flac
+  - カクシタワタシ [Instrumental]_37023879.flac
+  - キミとセミブルー [Instrumental].flac
+  - コントラスト [Instrumental].flac
+  - サンフェーデッド [Instrumental]_40156011.flac
+  - SUPREMACY [Instrumental]_40824480.flac
+  - Sweet Magic [Instrumental]_37305113.flac
+  - Try it now [Instrumental]_38539381.flac
+  - Unhappy Light [Instrumental]_38288409.flac
+  - Wake up!! [Instrumental].flac
+  - White Night! White Wish! [Instrumental]_36887863.flac
+  - Wonder Scale [Instrumental].flac
+  - Yellow Big Bang！ [Instrumental].flac
+  - Yellow Big Bang！ [Instrumental] (2).flac
+  - 36℃ U・B・U [Instrumental]_41262422.flac
+  - ときめきのソルフェージュ [Instrumental]_38333218.flac
+  - ナイワ [Instrumental]_40900450.flac
+  - ハッピーミルフィーユ [Instrumental]_37585437.flac
+  - フワフワ [Instrumental]_38288412.flac
+  - メクルメ [Instrumental]_37141491.flac
+  - ミラクルナナウ(゜∀゜)！ [Instrumental].flac
+  - ライドオンビート [Instrumental]_36653978.flac
+  - リロン武装して [Instrumental]_41950988.flac
+  - 叶えたい、ことばかり [Instrumental].flac
+  - 叶えたい、ことばかり [Instrumental] (2).flac
+  - 冠菊 [Instrumental].flac
+  - 古今东西ちょちょいのちょい [Instrumental].flac
+  - 光景 [Instrumental].flac
+  - 初 [Instrumental].flac
+  - 歌声は君いろ [Instrumental]_38354555.flac
+  - 空と约束 [Instrumental]_41950926.flac
+  - 小さな野望 [Instrumental]_36720452.flac
+  - 日々、発见的ステップ！ [Instrumental].flac
+  - 標 [Instrumental]_39200061.flac
+  - 桜フォトグラフ [Instrumental]_38539376.flac
+  - 極光 [Instrumental]_38354517.flac
+  - 憧れをいっぱい [Instrumental].flac
+  - 自己肯定感爆上げ↑↑しゅきしゅきソング [Instrumental]_40305459.flac
+  - 見て [Instrumental]_42017196.flac
+  - 雨上がりのアイリス [Instrumental]_39048818.flac
+  - 雪解けに [Instrumental]_38040889.flac
+  - 世界一可愛い私 [Instrumental].flac
+  - たいせつなもの [Instrumental]_37585444.flac
+  - つよつよ最强エクササイズ [Instrumental]_38539384.flac
+  - がむしゃらに行こう！ [Instrumental].flac
+  - コンテンポラリのダンス [Instrumental]_38333199.flac
+  - Campus mode!! [Instrumental].flac
+  - Campus mode!! [Instrumental] (2).flac
+  - Boom Boom Pow [Instrumental].flac
+  - Boom Boom Pow [Instrumental] (2).flac
+  - Cosmetic [Instrumental]_36925224.flac
+  - EGO [Instrumental]_38288406.flac
+  - ENDLESS DANCE [Instrumental]_37707412.flac
+  - Feel Jewel Dream [Instrumental].flac
+  - Fighting My Way [Instrumental].flac
+  - Fragile Heart [Instrumental]_38354520.flac
+  - Fluorite [Instrumental].flac
+  - Howling over the World [Instrumental].flac
+  - Kira Kira [Instrumental]_38354523.flac
+  - L.U.V [Instrumental].flac
+  - Love &amp; Joy [Instrumental]_39763982.flac
+  - Let&#39;s GO!! ICHI-NO-NI!! [Instrumental]_40900441.flac
+  - marble heart [Instrumental]_38096432.flac
+  - Our Chant [Instrumental]_38845698.flac
+  - Star-mine [Instrumental]_40305437.flac
+  - The Cute!!! [Instrumental]_39020068.flac
+  - The Rolling Riceball [Instrumental].flac
+  - The Rolling Riceball [Instrumental] (2).flac
+  - Top Secret [Instrumental]_38333234.flac
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2025 SerinaP&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;芹菜P
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="NutSerina/nutserina.github.io"
+    data-repo-id="R_kgDOQi6hvw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQi6hv84CzbAr"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
