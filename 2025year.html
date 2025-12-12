@@ -1,0 +1,2798 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title> | SerinaP&#39;s Blog</title>
+    <meta name="author" content="芹菜P" />
+    <meta name="description" content="已经不再是低眉顺眼的昨日，从今天开始我的传说" />
+    <meta name="keywords" content="blog, 博客, 个人博客, 芹菜P, 偶像大师, THE iDOLM@STER" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>SERINAP&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;SERINAP&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/12
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iM@S制作人同好会 - 年度报告</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --red: #C41E3A;
+            --dark-red: #8B0000;
+            --gold: #DAA520;
+            --orange: #E85D04;
+            --black: #1a1a1a;
+            --dark: #252525;
+            --cream: #F5F5DC;
+            --white: #FFFFFF;
+            --blue: #1D3557;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', -apple-system, sans-serif;
+            background: var(--black);
+            color: var(--cream);
+            width: 450px;
+            margin: 0 auto;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .report-container {
+            width: 450px;
+            background: var(--black);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* ========== 装饰元素 ========== */
+        .decor-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .decor-triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        
+        .decor-line {
+            position: absolute;
+            background: var(--gold);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        
+        /* ========== 条纹装饰 ========== */
+        .stripe {
+            height: 15px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--red) 0px,
+                var(--red) 25px,
+                var(--gold) 25px,
+                var(--gold) 30px,
+                var(--red) 30px,
+                var(--red) 55px,
+                var(--black) 55px,
+                var(--black) 60px
+            );
+        }
+        
+        .stripe-diagonal {
+            height: 20px;
+            background: repeating-linear-gradient(
+                -45deg,
+                var(--red) 0px,
+                var(--red) 10px,
+                var(--gold) 10px,
+                var(--gold) 12px,
+                var(--black) 12px,
+                var(--black) 22px
+            );
+        }
+        
+        .stripe-thin {
+            height: 4px;
+            background: var(--gold);
+        }
+        
+        /* ========== 头部 - 海报风格 ========== */
+        .header {
+            background: var(--red);
+            padding: 30px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: var(--gold);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: var(--black);
+            clip-path: polygon(0 100%, 100% 100%, 100% 0, 50% 100%, 0 0);
+        }
+        
+        .header-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 8px 20px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .header-badge::before,
+        .header-badge::after {
+            content: '★';
+            margin: 0 8px;
+        }
+        
+        .header-star-group {
+            font-size: 24px;
+            color: var(--gold);
+            margin-bottom: 10px;
+            letter-spacing: 8px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+        }
+        
+        .header h1 {
+            text-wrap: balance;
+            -webkit-text-wrap: balance; 
+            font-size: clamp(16px, 7.5vw, 38px);
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: 1.5px;
+            text-shadow: 3px 3px 0 var(--black), -1px -1px 0 var(--gold);
+            word-break: break-word;  
+            overflow-wrap: anywhere; 
+            white-space: normal;
+            display: inline-block;
+            max-width: 100%;
+            line-height: 1.35; 
+            text-align: center;
+            padding: 0 12px;
+        }
+        .header h1.short-title {
+            font-size: clamp(20px, 9vw, 44px);
+            letter-spacing: 3px; 
+        }
+
+        .header h1.medium-title {
+            font-size: clamp(18px, 8vw, 38px);
+        }
+
+        .header h1.long-title {
+            font-size: clamp(16px, 6vw, 32px);
+            letter-spacing: 1px;
+        }
+
+        .header h1.ultra-long-title {
+            font-size: clamp(14px, 5vw, 26px);
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+        }
+        
+        .header .subtitle {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 12px;
+            text-shadow: 1px 1px 0 var(--black);
+        }
+        
+        .header-stats {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .stat-box {
+            background: rgba(0,0,0,0.3);
+            padding: 10px 15px;
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+        
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 1px solid var(--gold);
+            opacity: 0.5;
+            transform: translate(3px, 3px);
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--gold);
+        }
+        
+        .stat-label {
+            font-size: 10px;
+            color: var(--cream);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* ========== 区块标题 ========== */
+        .section {
+            padding: 30px 15px;
+            position: relative;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            z-index: 0;
+        }
+        
+        .section-title {
+            display: inline-block;
+            background: var(--black);
+            padding: 8px 25px;
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            z-index: 1;
+            border: 2px solid var(--gold);
+        }
+        
+        .section-title::before,
+        .section-title::after {
+            content: '◆';
+            color: var(--red);
+            margin: 0 10px;
+            font-size: 12px;
+        }
+        
+        /* ========== 柱状图区域 ========== */
+        .chart-section {
+            background: 
+                linear-gradient(135deg, rgba(196,30,58,0.1) 0%, transparent 50%),
+                linear-gradient(225deg, rgba(218,165,32,0.1) 0%, transparent 50%),
+                var(--dark);
+            border-top: 4px solid var(--red);
+            border-bottom: 4px solid var(--red);
+            padding: 30px 8px;
+            position: relative;
+        }
+        
+        .chart-section::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border-left: 3px solid var(--gold);
+            border-top: 3px solid var(--gold);
+            opacity: 0.4;
+        }
+        
+        .chart-section::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-right: 3px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
+            opacity: 0.4;
+        }
+        
+        .chart-section .section-title {
+            margin-bottom: 40px;
+        }
+        
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 220px;
+            padding: 0 5px;
+            gap: 2px;
+            margin-top: 15px;
+        }
+        
+        .bar-item {
+            width: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .bar-wrapper {
+            width: 100%;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
+        .bar {
+            width: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            border-bottom: none;
+            position: relative;
+            box-shadow: 3px 0 0 rgba(0,0,0,0.3);
+        }
+        
+        .bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        .bar-segment {
+            width: 100%;
+        }
+        
+        .bar-value {
+            font-size: 10px;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 0 var(--black);
+        }
+        
+        .bar-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--cream);
+            margin-top: 8px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.2;
+            max-width: 40px;
+        }
+        
+        .bar-rank {
+            display: inline-block;
+            background: var(--red);
+            color: var(--gold);
+            font-size: 9px;
+            font-weight: 900;
+            padding: 2px 6px;
+            margin-top: 4px;
+        }
+        
+        .bar-contributors {
+            margin-top: 6px;
+            width: 100%;
+            min-height: 36px;  /* 固定最小高度，3行 x 12px */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        
+        .bar-contributor-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            font-size: 7px;
+            color: var(--cream);
+            opacity: 0.85;
+            height: 12px;  /* 固定每行高度 */
+            line-height: 12px;
+        }
+
+        .bar-contributor-item.empty {
+            visibility: hidden;  /* 空占位不可见但占位 */
+        }
+        
+        .bar-contributor-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 1px;
+            flex-shrink: 0;
+        }
+        
+        .bar-contributor-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 30px;
+            white-space: nowrap;
+        }
+        
+        /* ========== 热词卡片 ========== */
+        .word-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .word-card {
+            background: var(--dark);
+            border: 2px solid;
+            position: relative;
+            padding: 18px;
+            overflow: hidden;
+        }
+        
+        .word-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--red), var(--gold), var(--red));
+        }
+        
+        .word-card::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            border: 2px solid;
+            border-color: inherit;
+            opacity: 0.2;
+            transform: rotate(45deg);
+        }
+        
+        .word-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .word-card-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .word-card-rank {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+            text-shadow: 2px 2px 0 var(--red),
+                         4px 4px 0 rgba(0,0,0,0.3);
+            font-style: italic;
+        }
+        
+        .word-card-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--white);
+            text-shadow: 1px 1px 0 var(--black);
+        }
+        
+        .word-card-freq {
+            font-size: 11px;
+            color: var(--black);
+            background: var(--gold);
+            padding: 4px 12px;
+            font-weight: 900;
+            position: relative;
+        }
+        
+        .word-card-freq::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--gold);
+            z-index: -1;
+        }
+        
+        .word-card-comment {
+            font-size: 14px;
+            color: var(--cream);
+            font-style: italic;
+            margin: 15px 0;
+            padding: 12px 15px;
+            background: linear-gradient(90deg, rgba(196,30,58,0.2), transparent);
+            border-left: 4px solid var(--red);
+            position: relative;
+        }
+        
+        .word-card-comment::before {
+            content: '"';
+            position: absolute;
+            top: 5px;
+            left: 8px;
+            font-size: 30px;
+            color: var(--red);
+            opacity: 0.5;
+            font-family: Georgia, serif;
+        }
+        
+        .word-card-contributors {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+        
+        .word-card-contributors::before {
+            content: '👤';
+        }
+        
+        .word-card-samples {
+            list-style: none;
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        .word-card-samples li {
+            font-size: 12px;
+            color: var(--cream);
+            padding: 6px 0;
+            border-bottom: 1px dashed rgba(218,165,32,0.3);
+            opacity: 0.9;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .word-card-samples li:last-child {
+            border-bottom: none;
+        }
+        
+        .word-card-samples li::before {
+            content: '»';
+            position: absolute;
+            left: 5px;
+            color: var(--red);
+            font-weight: bold;
+        }
+        
+        /* ========== 榜单区域 ========== */
+        .rankings-section {
+            background: 
+                linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+            padding: 40px 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rankings-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(0,0,0,0.1) 50px,
+                    rgba(0,0,0,0.1) 100px
+                );
+            pointer-events: none;
+        }
+        
+        .rankings-section .section-title {
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--black);
+        }
+        
+        .rankings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ranking-card {
+            background: var(--black);
+            border: 2px solid var(--gold);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .ranking-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(218,165,32,0.1), transparent);
+            pointer-events: none;
+        }
+        
+        .ranking-card-header {
+            background: linear-gradient(90deg, var(--gold), #f4c430);
+            color: var(--black);
+            padding: 10px;
+            font-size: 11px;
+            font-weight: 900;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .ranking-card-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--black);
+        }
+        
+        .ranking-first {
+            padding: 18px 10px;
+            text-align: center;
+            border-bottom: 2px dashed rgba(218,165,32,0.5);
+            position: relative;
+        }
+        
+        .ranking-first-crown {
+            font-size: 24px;
+            margin-bottom: 8px;
+            animation: none;
+        }
+        
+        .ranking-first-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            margin: 0 auto 10px;
+            object-fit: cover;
+            display: block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        
+        .ranking-first-name {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-shadow: 1px 1px 0 var(--black);
+        }
+        
+        .ranking-first-value {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--white);
+            text-shadow: 2px 2px 0 var(--red);
+        }
+        
+        .ranking-others {
+            padding: 10px;
+        }
+        
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(218,165,32,0.2);
+        }
+        
+        .ranking-item:last-child {
+            border-bottom: none;
+        }
+        
+        .ranking-item-pos {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--red), var(--dark-red));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 900;
+            margin-right: 8px;
+            flex-shrink: 0;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .ranking-item-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 8px;
+            border: 2px solid var(--gold);
+            flex-shrink: 0;
+        }
+        
+        .ranking-item-name {
+            flex: 1;
+            font-size: 11px;
+            color: var(--cream);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .ranking-item-value {
+            font-size: 10px;
+            color: var(--gold);
+            font-weight: 900;
+            flex-shrink: 0;
+            margin-left: 5px;
+            background: rgba(218,165,32,0.2);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        /* ========== 时段分布 ========== */
+        .hour-section {
+            padding: 35px 15px;
+            background: var(--dark);
+            position: relative;
+        }
+        
+        .hour-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--red), transparent);
+        }
+        
+        .hour-chart-container {
+            background: 
+                linear-gradient(180deg, rgba(196,30,58,0.1) 0%, transparent 100%);
+            border: 2px solid var(--red);
+            padding: 20px 15px;
+            position: relative;
+        }
+        
+        .hour-chart-container::before {
+            content: '⏰';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            padding: 0 10px;
+            font-size: 20px;
+        }
+        
+        .hour-chart {
+            display: flex;
+            align-items: flex-end;
+            height: 80px;
+            gap: 2px;
+            margin-top: 10px;
+        }
+        
+        .hour-bar {
+            flex: 1;
+            background: linear-gradient(180deg, var(--gold), var(--red));
+            border-radius: 2px 2px 0 0;
+            min-height: 3px;
+            position: relative;
+        }
+        
+        .hour-bar:nth-child(n+1):nth-child(-n+6) {
+            background: linear-gradient(180deg, #6366f1, #4338ca);
+        }
+        
+        .hour-bar:nth-child(n+7):nth-child(-n+12) {
+            background: linear-gradient(180deg, var(--orange), var(--red));
+        }
+        
+        .hour-bar:nth-child(n+13):nth-child(-n+18) {
+            background: linear-gradient(180deg, var(--gold), #b8860b);
+        }
+        
+        .hour-bar:nth-child(n+19):nth-child(-n+24) {
+            background: linear-gradient(180deg, #6366f1, #4338ca);
+        }
+        
+        .hour-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: var(--cream);
+            font-size: 10px;
+            opacity: 0.7;
+        }
+        
+        .hour-peak {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        
+        .hour-peak-badge {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            padding: 5px 15px;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+        
+        /* ========== 页脚 ========== */
+        .footer {
+            background: linear-gradient(180deg, var(--dark-red), var(--red));
+            padding: 30px 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gold);
+        }
+        
+        .footer-emblem {
+            font-size: 40px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+        }
+        
+        .footer-stars {
+            font-size: 16px;
+            color: var(--gold);
+            letter-spacing: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-slogan {
+            font-size: 14px;
+            color: var(--cream);
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .footer-text {
+            color: var(--cream);
+            font-size: 10px;
+            opacity: 0.6;
+        }
+        
+        /* ========== 颜色类 ========== */
+        .color-1 { border-color: #DC2626; }
+        .color-2 { border-color: #EA580C; }
+        .color-3 { border-color: #D97706; }
+        .color-4 { border-color: #CA8A04; }
+        .color-5 { border-color: #65A30D; }
+        .color-6 { border-color: #16A34A; }
+        .color-7 { border-color: #0D9488; }
+        .color-8 { border-color: #0891B2; }
+        .color-9 { border-color: #2563EB; }
+        .color-10 { border-color: #7C3AED; }
+        
+        /* ========== 分隔装饰 ========== */
+        .divider {
+            height: 30px;
+            background: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .divider::before {
+            content: '★ ★ ★';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--red);
+            font-size: 12px;
+            letter-spacing: 20px;
+        }
+        
+        .divider-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                var(--red), 
+                transparent 20%, 
+                transparent 80%, 
+                var(--red)
+            );
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="stripe"></div>
+        
+        <!-- 头部 -->
+        <div class="header">
+            <div class="header-badge">Annual Report</div>
+            <div class="header-star-group">★ ★ ★</div>
+            <h1 class="
+                medium-title
+                ">iM@S制作人同好会</h1>
+            <div class="subtitle">年度报告</div>
+            <div class="header-stats">
+                <div class="stat-box">
+                    <div class="stat-value">65,615</div>
+                    <div class="stat-label">消息总数</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stripe-diagonal"></div>
+        
+        <!-- 柱状图 -->
+        <div class="chart-section">
+            <div class="section-header">
+                <div class="section-title">热词榜</div>
+            </div>
+            
+            <div class="bar-chart">
+                
+                <div class="bar-item">
+                    <div class="bar-value">736</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 100.0%;">
+                            
+                            <div class="bar-segment" style="height: 53.39673913043478%; background-color: #DC2626;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 10.054347826086957%; background-color: #EA580C;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 9.918478260869565%; background-color: #D97706;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 4.891304347826087%; background-color: #CA8A04;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 3.6684782608695654%; background-color: #65A30D;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 18.070652173913043%; background-color: #6B7280;">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="bar-label">美希</div>
+                    <div class="bar-rank">#1</div>
+                    <div class="bar-contributors">
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #DC2626;"></div>
+                            <span class="bar-contributor-name">天选之星</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #EA580C;"></div>
+                            <span class="bar-contributor-name">寻找人类</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #D97706;"></div>
+                            <span class="bar-contributor-name">友人A</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="bar-item">
+                    <div class="bar-value">463</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 80.17352306187112%;">
+                            
+                            <div class="bar-segment" style="height: 12.958963282937367%; background-color: #DC2626;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 9.503239740820735%; background-color: #EA580C;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 8.855291576673865%; background-color: #D97706;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 8.639308855291576%; background-color: #CA8A04;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 6.047516198704104%; background-color: #65A30D;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 53.99568034557235%; background-color: #6B7280;">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="bar-label">喜欢</div>
+                    <div class="bar-rank">#2</div>
+                    <div class="bar-contributors">
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #DC2626;"></div>
+                            <span class="bar-contributor-name">皆城总士真壁一骑</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #EA580C;"></div>
+                            <span class="bar-contributor-name">芹菜P</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #D97706;"></div>
+                            <span class="bar-contributor-name">相馬柳丁</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="bar-item">
+                    <div class="bar-value">382</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 72.73218352996032%;">
+                            
+                            <div class="bar-segment" style="height: 17.539267015706805%; background-color: #DC2626;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 11.2565445026178%; background-color: #EA580C;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 10.209424083769633%; background-color: #D97706;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 7.329842931937172%; background-color: #CA8A04;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 5.7591623036649215%; background-color: #65A30D;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 47.90575916230366%; background-color: #6B7280;">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="bar-label">偶像</div>
+                    <div class="bar-rank">#3</div>
+                    <div class="bar-contributors">
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #DC2626;"></div>
+                            <span class="bar-contributor-name">天选之星</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #EA580C;"></div>
+                            <span class="bar-contributor-name">寻找人类</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #D97706;"></div>
+                            <span class="bar-contributor-name">Schicksal</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="bar-item">
+                    <div class="bar-value">275</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 60.59222840296847%;">
+                            
+                            <div class="bar-segment" style="height: 14.181818181818182%; background-color: #DC2626;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 12.0%; background-color: #EA580C;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 11.272727272727273%; background-color: #D97706;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 10.909090909090908%; background-color: #CA8A04;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 8.0%; background-color: #65A30D;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 43.63636363636363%; background-color: #6B7280;">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="bar-label">何意味</div>
+                    <div class="bar-rank">#4</div>
+                    <div class="bar-contributors">
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #DC2626;"></div>
+                            <span class="bar-contributor-name">@RI_P</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #EA580C;"></div>
+                            <span class="bar-contributor-name">k2(0_inear)</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #D97706;"></div>
+                            <span class="bar-contributor-name">Schicksal</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="bar-item">
+                    <div class="bar-value">199</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 48.416219330436164%;">
+                            
+                            <div class="bar-segment" style="height: 37.185929648241206%; background-color: #DC2626;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 8.040201005025125%; background-color: #EA580C;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 7.537688442211055%; background-color: #D97706;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 6.030150753768844%; background-color: #CA8A04;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 4.522613065326634%; background-color: #65A30D;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 36.68341708542713%; background-color: #6B7280;">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="bar-label">动画</div>
+                    <div class="bar-rank">#5</div>
+                    <div class="bar-contributors">
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #DC2626;"></div>
+                            <span class="bar-contributor-name">皆城总士真壁一骑</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #EA580C;"></div>
+                            <span class="bar-contributor-name">芹菜P</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #D97706;"></div>
+                            <span class="bar-contributor-name">兼爱</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="bar-item">
+                    <div class="bar-value">196</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 47.80258720393976%;">
+                            
+                            <div class="bar-segment" style="height: 18.367346938775512%; background-color: #DC2626;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 14.285714285714285%; background-color: #EA580C;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 7.142857142857142%; background-color: #D97706;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 5.1020408163265305%; background-color: #CA8A04;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 3.571428571428571%; background-color: #65A30D;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 51.53061224489795%; background-color: #6B7280;">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="bar-label">偶像大师</div>
+                    <div class="bar-rank">#6</div>
+                    <div class="bar-contributors">
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #DC2626;"></div>
+                            <span class="bar-contributor-name">芹菜P</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #EA580C;"></div>
+                            <span class="bar-contributor-name">九之星，冥夜长流</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #D97706;"></div>
+                            <span class="bar-contributor-name">樱木真瞳</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="bar-item">
+                    <div class="bar-value">193</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 47.171978681557995%;">
+                            
+                            <div class="bar-segment" style="height: 14.507772020725387%; background-color: #DC2626;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 12.953367875647666%; background-color: #EA580C;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 7.253886010362693%; background-color: #D97706;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 5.699481865284974%; background-color: #CA8A04;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 5.699481865284974%; background-color: #65A30D;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 53.8860103626943%; background-color: #6B7280;">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="bar-label">群友</div>
+                    <div class="bar-rank">#7</div>
+                    <div class="bar-contributors">
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #DC2626;"></div>
+                            <span class="bar-contributor-name">芹菜P</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #EA580C;"></div>
+                            <span class="bar-contributor-name">セリナ</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #D97706;"></div>
+                            <span class="bar-contributor-name">CopperasP</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="bar-item">
+                    <div class="bar-value">179</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 43.95372516100704%;">
+                            
+                            <div class="bar-segment" style="height: 9.497206703910614%; background-color: #DC2626;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 7.262569832402235%; background-color: #EA580C;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 7.262569832402235%; background-color: #D97706;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 7.262569832402235%; background-color: #CA8A04;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 7.262569832402235%; background-color: #65A30D;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 61.452513966480446%; background-color: #6B7280;">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="bar-label">一起</div>
+                    <div class="bar-rank">#8</div>
+                    <div class="bar-contributors">
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #DC2626;"></div>
+                            <span class="bar-contributor-name">九之星，冥夜长流</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #EA580C;"></div>
+                            <span class="bar-contributor-name">花无十日红</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #D97706;"></div>
+                            <span class="bar-contributor-name">CopperasP</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="bar-item">
+                    <div class="bar-value">172</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 42.119206374442605%;">
+                            
+                            <div class="bar-segment" style="height: 10.465116279069768%; background-color: #DC2626;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 7.55813953488372%; background-color: #EA580C;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 6.976744186046512%; background-color: #D97706;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 6.976744186046512%; background-color: #CA8A04;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 6.395348837209303%; background-color: #65A30D;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 61.627906976744185%; background-color: #6B7280;">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="bar-label">可爱</div>
+                    <div class="bar-rank">#9</div>
+                    <div class="bar-contributors">
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #DC2626;"></div>
+                            <span class="bar-contributor-name">寻找人类</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #EA580C;"></div>
+                            <span class="bar-contributor-name">花无十日红</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #D97706;"></div>
+                            <span class="bar-contributor-name">Schicksal</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="bar-item">
+                    <div class="bar-value">141</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 25.0%;">
+                            
+                            <div class="bar-segment" style="height: 26.95035460992908%; background-color: #DC2626;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 17.73049645390071%; background-color: #EA580C;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 11.347517730496454%; background-color: #D97706;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 7.801418439716312%; background-color: #CA8A04;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 4.964539007092199%; background-color: #65A30D;">
+                            </div>
+                            
+                            <div class="bar-segment" style="height: 31.20567375886525%; background-color: #6B7280;">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="bar-label">制作人</div>
+                    <div class="bar-rank">#10</div>
+                    <div class="bar-contributors">
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #DC2626;"></div>
+                            <span class="bar-contributor-name">天选之星</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #EA580C;"></div>
+                            <span class="bar-contributor-name">寻找人类</span>
+                        </div>
+                        
+                        <div class="bar-contributor-item ">
+                            <div class="bar-contributor-dot" style="background: #D97706;"></div>
+                            <span class="bar-contributor-name">セリナ</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="divider">
+            <div class="divider-line"></div>
+        </div>
+        
+        <!-- 热词卡片 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">热词档案</div>
+            </div>
+            
+            <div class="word-cards">
+                
+                <div class="word-card color-1">
+                    <div class="word-card-header">
+                        <div class="word-card-left">
+                            <div class="word-card-rank">#1</div>
+                            <div class="word-card-title">美希</div>
+                        </div>
+                        <div class="word-card-freq">736次</div>
+                    </div>
+                    
+                    
+                    <div class="word-card-comment">群友的快乐，简单又纯粹</div>
+                    
+                    
+                    <div class="word-card-contributors">
+                        天选之星、寻找人类、友人A
+                    </div>
+                    
+                    <ul class="word-card-samples">
+                        
+                        <li>哈？你在说什么啊？美希听不懂nano</li>
+                        
+                        <li>美希也觉得这谱子有点抽象预备军的感觉nano</li>
+                        
+                        <li>美希也来听听偶像大师的歌好了</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="word-card color-2">
+                    <div class="word-card-header">
+                        <div class="word-card-left">
+                            <div class="word-card-rank">#2</div>
+                            <div class="word-card-title">喜欢</div>
+                        </div>
+                        <div class="word-card-freq">463次</div>
+                    </div>
+                    
+                    
+                    <div class="word-card-comment">群聊精华，浓缩于此</div>
+                    
+                    
+                    <div class="word-card-contributors">
+                        皆城总士真壁一骑、芹菜P、相馬柳丁
+                    </div>
+                    
+                    <ul class="word-card-samples">
+                        
+                        <li>以前玩pcr都喜欢管角色兑换碎片的石头叫母猪石(</li>
+                        
+                        <li>喵？！ 谷歌搜索？！ 也就是说，未来可以被更多人看到，让更多人喜欢上未来的猫咪偶...</li>
+                        
+                        <li>希望能有更多人知道偶像大师，喜欢上她</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="word-card color-3">
+                    <div class="word-card-header">
+                        <div class="word-card-left">
+                            <div class="word-card-rank">#3</div>
+                            <div class="word-card-title">偶像</div>
+                        </div>
+                        <div class="word-card-freq">382次</div>
+                    </div>
+                    
+                    
+                    <div class="word-card-comment">群友的快乐，简单又纯粹</div>
+                    
+                    
+                    <div class="word-card-contributors">
+                        天选之星、寻找人类、Schicksal
+                    </div>
+                    
+                    <ul class="word-card-samples">
+                        
+                        <li>喵？！ 也要漫无止境的八月喵？ 听起来有点可怕喵… 未来可不想一直重复八月喵！ ...</li>
+                        
+                        <li>喵？！ 今天是初音未来的生日喵？！ 真是个值得庆祝的日子喵！ 未来要好好祝福她喵...</li>
+                        
+                        <li>喵？制作人在说什么…？未来有点听不懂喵…但是，未来会继续努力，成为最棒的偶像，让...</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="word-card color-4">
+                    <div class="word-card-header">
+                        <div class="word-card-left">
+                            <div class="word-card-rank">#4</div>
+                            <div class="word-card-title">何意味</div>
+                        </div>
+                        <div class="word-card-freq">275次</div>
+                    </div>
+                    
+                    
+                    <div class="word-card-comment">这个词承载了太多故事</div>
+                    
+                    
+                    <div class="word-card-contributors">
+                        @RI_P、k2(0_inear)、Schicksal
+                    </div>
+                    
+                    <ul class="word-card-samples">
+                        
+                        <li>坐拥千亿意味的爷爷去世了，就在家族齐聚准备分遗产时，律师突然沉声问道：“何意味？...</li>
+                        
+                        <li>坐拥千亿意味的爷爷去世了，就在家族齐聚准备分遗产时，律师突然沉声问道：“何意味？...</li>
+                        
+                        <li>坐拥千亿意味的爷爷去世了，就在家族齐聚准备分遗产时，律师突然沉声问道：“何意味？...</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="word-card color-5">
+                    <div class="word-card-header">
+                        <div class="word-card-left">
+                            <div class="word-card-rank">#5</div>
+                            <div class="word-card-title">动画</div>
+                        </div>
+                        <div class="word-card-freq">199次</div>
+                    </div>
+                    
+                    
+                    <div class="word-card-comment">这个词承载了太多故事</div>
+                    
+                    
+                    <div class="word-card-contributors">
+                        皆城总士真壁一骑、芹菜P、兼爱
+                    </div>
+                    
+                    <ul class="word-card-samples">
+                        
+                        <li>不知道学马仕多久会有动画</li>
+                        
+                        <li>百万动画很好了</li>
+                        
+                        <li>这部动画国内15年禁播了</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="word-card color-6">
+                    <div class="word-card-header">
+                        <div class="word-card-left">
+                            <div class="word-card-rank">#6</div>
+                            <div class="word-card-title">偶像大师</div>
+                        </div>
+                        <div class="word-card-freq">196次</div>
+                    </div>
+                    
+                    
+                    <div class="word-card-comment">这个词承载了太多故事</div>
+                    
+                    
+                    <div class="word-card-contributors">
+                        芹菜P、九之星，冥夜长流、樱木真瞳
+                    </div>
+                    
+                    <ul class="word-card-samples">
+                        
+                        <li>偶像大师单曲这么多了啊（）</li>
+                        
+                        <li>就是偶像大师自己的超级机器人大战啊（？）</li>
+                        
+                        <li>漫展 查询 偶像大师</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="word-card color-7">
+                    <div class="word-card-header">
+                        <div class="word-card-left">
+                            <div class="word-card-rank">#7</div>
+                            <div class="word-card-title">群友</div>
+                        </div>
+                        <div class="word-card-freq">193次</div>
+                    </div>
+                    
+                    
+                    <div class="word-card-comment">高频出现，必有原因</div>
+                    
+                    
+                    <div class="word-card-contributors">
+                        芹菜P、セリナ、CopperasP
+                    </div>
+                    
+                    <ul class="word-card-samples">
+                        
+                        <li>群友你也在吗</li>
+                        
+                        <li>群友们还有啥想要的资源也可以叫我搜搜</li>
+                        
+                        <li>指令：waifu 娶群友 别名：marry，娶群友，今日老婆。</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="word-card color-8">
+                    <div class="word-card-header">
+                        <div class="word-card-left">
+                            <div class="word-card-rank">#8</div>
+                            <div class="word-card-title">一起</div>
+                        </div>
+                        <div class="word-card-freq">179次</div>
+                    </div>
+                    
+                    
+                    <div class="word-card-comment">高频出现，必有原因</div>
+                    
+                    
+                    <div class="word-card-contributors">
+                        九之星，冥夜长流、花无十日红、CopperasP
+                    </div>
+                    
+                    <ul class="word-card-samples">
+                        
+                        <li>1加和红米iqoo算一起</li>
+                        
+                        <li>喵？！ 也要漫无止境的八月喵？ 听起来有点可怕喵… 未来可不想一直重复八月喵！ ...</li>
+                        
+                        <li>一起吃饭的喝醉了</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="word-card color-9">
+                    <div class="word-card-header">
+                        <div class="word-card-left">
+                            <div class="word-card-rank">#9</div>
+                            <div class="word-card-title">可爱</div>
+                        </div>
+                        <div class="word-card-freq">172次</div>
+                    </div>
+                    
+                    
+                    <div class="word-card-comment">群聊精华，浓缩于此</div>
+                    
+                    
+                    <div class="word-card-contributors">
+                        寻找人类、花无十日红、Schicksal
+                    </div>
+                    
+                    <ul class="word-card-samples">
+                        
+                        <li>小机器人还挺可爱</li>
+                        
+                        <li>日花怪可爱的</li>
+                        
+                        <li>豆豆眼是挺可爱的</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="word-card color-10">
+                    <div class="word-card-header">
+                        <div class="word-card-left">
+                            <div class="word-card-rank">#10</div>
+                            <div class="word-card-title">制作人</div>
+                        </div>
+                        <div class="word-card-freq">141次</div>
+                    </div>
+                    
+                    
+                    <div class="word-card-comment">这个词承载了太多故事</div>
+                    
+                    
+                    <div class="word-card-contributors">
+                        天选之星、寻找人类、セリナ
+                    </div>
+                    
+                    <ul class="word-card-samples">
+                        
+                        <li>冷知识，如果在星耀季节第一天vo课达到满分的话，制作人exp是72（）</li>
+                        
+                        <li>制作人你好喵！今天也要元气满满地加油哦喵！</li>
+                        
+                        <li>制作人~又想要看未来卖萌了吗喵？好吧，既然是制作人的要求，未来就特别表演一次喵！...</li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="stripe"></div>
+        
+        <!-- 榜单 -->
+        <div class="section rankings-section">
+            <div class="section-header">
+                <div class="section-title">荣誉殿堂</div>
+            </div>
+            
+            <div class="rankings-grid">
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        🏆 群聊噪音
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2241439211&amp;s=640" alt="芹菜P" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">芹菜P</div>
+                        <div class="ranking-first-value">9065条</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2838938596&amp;s=640" alt="相馬柳丁" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">相馬柳丁</div>
+                            <div class="ranking-item-value">5874条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1950039232&amp;s=640" alt="皆城总士真壁一骑" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">皆城总士真壁一骑</div>
+                            <div class="ranking-item-value">5609条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=694234719&amp;s=640" alt="Schicksal" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">Schicksal</div>
+                            <div class="ranking-item-value">4214条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3090714813&amp;s=640" alt="CopperasP" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">CopperasP</div>
+                            <div class="ranking-item-value">3499条</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        📝 打字民工
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2241439211&amp;s=640" alt="芹菜P" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">芹菜P</div>
+                        <div class="ranking-first-value">55655字</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1950039232&amp;s=640" alt="皆城总士真壁一骑" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">皆城总士真壁一骑</div>
+                            <div class="ranking-item-value">47363字</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2838938596&amp;s=640" alt="相馬柳丁" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">相馬柳丁</div>
+                            <div class="ranking-item-value">33380字</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=694234719&amp;s=640" alt="Schicksal" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">Schicksal</div>
+                            <div class="ranking-item-value">26191字</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2977698497&amp;s=640" alt="天选之星" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">天选之星</div>
+                            <div class="ranking-item-value">24557字</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        📖 小作文狂
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3623522138&amp;s=640" alt="セリナ" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">セリナ</div>
+                        <div class="ranking-first-value">35.0字/条</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=609711313&amp;s=640" alt="MapleChocola" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">MapleChocola</div>
+                            <div class="ranking-item-value">15.3字/条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=504810909&amp;s=640" alt="樱木真瞳" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">樱木真瞳</div>
+                            <div class="ranking-item-value">15.0字/条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3889697298&amp;s=640" alt="SSD小助手" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">SSD小助手</div>
+                            <div class="ranking-item-value">12.9字/条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1531047267&amp;s=640" alt="耍酒楓" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">耍酒楓</div>
+                            <div class="ranking-item-value">12.1字/条</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        😂 表情狂人
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2838938596&amp;s=640" alt="相馬柳丁" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">相馬柳丁</div>
+                        <div class="ranking-first-value">664个</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2241439211&amp;s=640" alt="芹菜P" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">芹菜P</div>
+                            <div class="ranking-item-value">580个</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1429302044&amp;s=640" alt="@RI_P" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">@RI_P</div>
+                            <div class="ranking-item-value">567个</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1950039232&amp;s=640" alt="皆城总士真壁一骑" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">皆城总士真壁一骑</div>
+                            <div class="ranking-item-value">273个</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=694234719&amp;s=640" alt="Schicksal" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">Schicksal</div>
+                            <div class="ranking-item-value">210个</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        🖼️ 我的图图
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2241439211&amp;s=640" alt="芹菜P" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">芹菜P</div>
+                        <div class="ranking-first-value">2555张</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2838938596&amp;s=640" alt="相馬柳丁" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">相馬柳丁</div>
+                            <div class="ranking-item-value">1342张</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=694234719&amp;s=640" alt="Schicksal" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">Schicksal</div>
+                            <div class="ranking-item-value">962张</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1429302044&amp;s=640" alt="@RI_P" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">@RI_P</div>
+                            <div class="ranking-item-value">821张</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3090714813&amp;s=640" alt="CopperasP" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">CopperasP</div>
+                            <div class="ranking-item-value">807张</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        📦 转发机器
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2838938596&amp;s=640" alt="相馬柳丁" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">相馬柳丁</div>
+                        <div class="ranking-first-value">25次</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3623522138&amp;s=640" alt="セリナ" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">セリナ</div>
+                            <div class="ranking-item-value">20次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2974046092&amp;s=640" alt="k2(0_inear)" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">k2(0_inear)</div>
+                            <div class="ranking-item-value">14次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=504810909&amp;s=640" alt="樱木真瞳" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">樱木真瞳</div>
+                            <div class="ranking-item-value">11次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3781736264&amp;s=640" alt="哈氣=耄耋=楚麗芳" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">哈氣=耄耋=楚麗芳</div>
+                            <div class="ranking-item-value">10次</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        💬 回复劳模
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2241439211&amp;s=640" alt="芹菜P" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">芹菜P</div>
+                        <div class="ranking-first-value">1059次</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2977698497&amp;s=640" alt="天选之星" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">天选之星</div>
+                            <div class="ranking-item-value">725次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2838938596&amp;s=640" alt="相馬柳丁" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">相馬柳丁</div>
+                            <div class="ranking-item-value">609次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3131582694&amp;s=640" alt="寻找人类" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">寻找人类</div>
+                            <div class="ranking-item-value">463次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3090714813&amp;s=640" alt="CopperasP" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">CopperasP</div>
+                            <div class="ranking-item-value">374次</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        ⭐ 回复黑洞
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2241439211&amp;s=640" alt="芹菜P" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">芹菜P</div>
+                        <div class="ranking-first-value">882次</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2838938596&amp;s=640" alt="相馬柳丁" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">相馬柳丁</div>
+                            <div class="ranking-item-value">572次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2977698497&amp;s=640" alt="天选之星" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">天选之星</div>
+                            <div class="ranking-item-value">543次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1950039232&amp;s=640" alt="皆城总士真壁一骑" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">皆城总士真壁一骑</div>
+                            <div class="ranking-item-value">396次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3090714813&amp;s=640" alt="CopperasP" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">CopperasP</div>
+                            <div class="ranking-item-value">296次</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        📢 艾特狂魔
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2241439211&amp;s=640" alt="芹菜P" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">芹菜P</div>
+                        <div class="ranking-first-value">1016次</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3090714813&amp;s=640" alt="CopperasP" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">CopperasP</div>
+                            <div class="ranking-item-value">259次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3160944093&amp;s=640" alt="春江风岷" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">春江风岷</div>
+                            <div class="ranking-item-value">187次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1362741955&amp;s=640" alt="bulblight_H💡" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">bulblight_H💡</div>
+                            <div class="ranking-item-value">177次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=391844840&amp;s=640" alt="hihukayo" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">hihukayo</div>
+                            <div class="ranking-item-value">145次</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        🎯 人气靶子
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2977698497&amp;s=640" alt="天选之星" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">天选之星</div>
+                        <div class="ranking-first-value">458次</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2241439211&amp;s=640" alt="芹菜P" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">芹菜P</div>
+                            <div class="ranking-item-value">368次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2838938596&amp;s=640" alt="相馬柳丁" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">相馬柳丁</div>
+                            <div class="ranking-item-value">339次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1950039232&amp;s=640" alt="皆城总士真壁一骑" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">皆城总士真壁一骑</div>
+                            <div class="ranking-item-value">205次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3090714813&amp;s=640" alt="CopperasP" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">CopperasP</div>
+                            <div class="ranking-item-value">190次</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        🔗 链接仓鼠
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2241439211&amp;s=640" alt="芹菜P" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">芹菜P</div>
+                        <div class="ranking-first-value">68条</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1950039232&amp;s=640" alt="皆城总士真壁一骑" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">皆城总士真壁一骑</div>
+                            <div class="ranking-item-value">34条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2838938596&amp;s=640" alt="相馬柳丁" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">相馬柳丁</div>
+                            <div class="ranking-item-value">19条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3781736264&amp;s=640" alt="哈氣=耄耋=楚麗芳" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">哈氣=耄耋=楚麗芳</div>
+                            <div class="ranking-item-value">7条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3623522138&amp;s=640" alt="セリナ" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">セリナ</div>
+                            <div class="ranking-item-value">6条</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        🌙 阴间作息
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2241439211&amp;s=640" alt="芹菜P" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">芹菜P</div>
+                        <div class="ranking-first-value">319条</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3131582694&amp;s=640" alt="寻找人类" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">寻找人类</div>
+                            <div class="ranking-item-value">273条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1950039232&amp;s=640" alt="皆城总士真壁一骑" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">皆城总士真壁一骑</div>
+                            <div class="ranking-item-value">264条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1429302044&amp;s=640" alt="@RI_P" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">@RI_P</div>
+                            <div class="ranking-item-value">248条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2838938596&amp;s=640" alt="相馬柳丁" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">相馬柳丁</div>
+                            <div class="ranking-item-value">190条</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        🌅 早八怨种
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2241439211&amp;s=640" alt="芹菜P" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">芹菜P</div>
+                        <div class="ranking-first-value">338条</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3090714813&amp;s=640" alt="CopperasP" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">CopperasP</div>
+                            <div class="ranking-item-value">115条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3781736264&amp;s=640" alt="哈氣=耄耋=楚麗芳" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">哈氣=耄耋=楚麗芳</div>
+                            <div class="ranking-item-value">64条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2156888619&amp;s=640" alt="花无十日红" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">花无十日红</div>
+                            <div class="ranking-item-value">45条</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2838938596&amp;s=640" alt="相馬柳丁" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">相馬柳丁</div>
+                            <div class="ranking-item-value">43条</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        🔄 复读机器
+                    </div>
+                    
+                    
+                    <div class="ranking-first">
+                        <div class="ranking-first-crown">👑</div>
+                        <img class="ranking-first-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=1429302044&amp;s=640" alt="@RI_P" onerror="this.style.display='none'">
+                        <div class="ranking-first-name">@RI_P</div>
+                        <div class="ranking-first-value">339次</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="ranking-others">
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">2</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2241439211&amp;s=640" alt="芹菜P" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">芹菜P</div>
+                            <div class="ranking-item-value">233次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">3</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=3781736264&amp;s=640" alt="哈氣=耄耋=楚麗芳" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">哈氣=耄耋=楚麗芳</div>
+                            <div class="ranking-item-value">97次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">4</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2838938596&amp;s=640" alt="相馬柳丁" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">相馬柳丁</div>
+                            <div class="ranking-item-value">97次</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="ranking-item-pos">5</div>
+                            <img class="ranking-item-avatar" src="https://q1.qlogo.cn/g?b=qq&amp;nk=694234719&amp;s=640" alt="Schicksal" onerror="this.style.display='none'">
+                            <div class="ranking-item-name">Schicksal</div>
+                            <div class="ranking-item-value">94次</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- 时段分布 -->
+        <div class="section hour-section">
+            <div class="section-header">
+                <div class="section-title">活跃时段</div>
+            </div>
+            
+            <div class="hour-chart-container">
+                <div class="hour-chart">
+                    
+                    <div class="hour-bar" style="height: 31.83741505321195%;"></div>
+                    
+                    <div class="hour-bar" style="height: 8.154891652775998%;"></div>
+                    
+                    <div class="hour-bar" style="height: 3%;"></div>
+                    
+                    <div class="hour-bar" style="height: 3%;"></div>
+                    
+                    <div class="hour-bar" style="height: 3%;"></div>
+                    
+                    <div class="hour-bar" style="height: 3%;"></div>
+                    
+                    <div class="hour-bar" style="height: 3%;"></div>
+                    
+                    <div class="hour-bar" style="height: 4.090267983074753%;"></div>
+                    
+                    <div class="hour-bar" style="height: 7.97538145916143%;"></div>
+                    
+                    <div class="hour-bar" style="height: 16.694448006154637%;"></div>
+                    
+                    <div class="hour-bar" style="height: 23.528657520194894%;"></div>
+                    
+                    <div class="hour-bar" style="height: 34.748044621105265%;"></div>
+                    
+                    <div class="hour-bar" style="height: 48.59597384280036%;"></div>
+                    
+                    <div class="hour-bar" style="height: 48.39081933581228%;"></div>
+                    
+                    <div class="hour-bar" style="height: 37.87665085267342%;"></div>
+                    
+                    <div class="hour-bar" style="height: 42.40287216309783%;"></div>
+                    
+                    <div class="hour-bar" style="height: 49.455058340812926%;"></div>
+                    
+                    <div class="hour-bar" style="height: 72.06052057956148%;"></div>
+                    
+                    <div class="hour-bar" style="height: 57.23810744967304%;"></div>
+                    
+                    <div class="hour-bar" style="height: 57.225285292986285%;"></div>
+                    
+                    <div class="hour-bar" style="height: 64.8672906782921%;"></div>
+                    
+                    <div class="hour-bar" style="height: 100.0%;"></div>
+                    
+                    <div class="hour-bar" style="height: 90.67829208872934%;"></div>
+                    
+                    <div class="hour-bar" style="height: 39.77433004231312%;"></div>
+                    
+                </div>
+                <div class="hour-labels">
+                    <span>0时</span>
+                    <span>6时</span>
+                    <span>12时</span>
+                    <span>18时</span>
+                    <span>24时</span>
+                </div>
+                <div class="hour-peak">
+                    ⭐ 最活跃时段
+                    <div class="hour-peak-badge">21:00 - 22:00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stripe-diagonal"></div>
+        
+        <!-- 页脚 -->
+        <div class="footer">
+            <div class="footer-text">
+                Github.com/ZiHuixi/QQgroup-annual-report-analyzer
+            </div>
+        </div>
+        
+        <div class="stripe-thin"></div>
+    </div>
+</body>
+</html>
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2025 SerinaP&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;芹菜P
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="NutSerina/nutserina.github.io"
+    data-repo-id="R_kgDOQi6hvw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQi6hv84CzbAr"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
