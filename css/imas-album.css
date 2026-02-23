@@ -1,3 +1,7 @@
+/* ============================================
+   IDOLM@STER 资源网格
+   ============================================ */
+
 .album-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -13,24 +17,46 @@
   text-align: center;
 }
 
-.album-item img {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 6px;
+/* ====== 强制正方形 ====== */
+.album-grid .album-item img,
+.album-grid .album-item img[loading],
+div.album-grid div.album-item img {
+  width: 140px !important;
+  height: 140px !important;
+  min-width: 140px !important;
+  min-height: 140px !important;
+  max-width: 140px !important;
+  max-height: 140px !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+  border-radius: 6px !important;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
   background: #f0f0f0;
-  content-visibility: auto;
-  transition: transform 0.2s ease;
+  display: block !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  cursor: pointer;
+  /* 模糊初始态 */
+  filter: blur(12px);
+  transform: scale(1.05);
+  transition: filter 0.5s ease, transform 0.5s ease, box-shadow 0.2s ease;
 }
 
-.album-item img:hover {
-  transform: scale(1.08);
+/* 加载完成 → 清晰 */
+.album-grid .album-item img.loaded {
+  filter: blur(0) !important;
+  transform: scale(1) !important;
+}
+
+/* hover */
+.album-grid .album-item img.loaded:hover {
+  transform: scale(1.08) !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* 曲名 */
 .album-item span {
-  margin-top: 4px;
+  margin-top: 6px;
   font-size: 11px;
   color: #666;
   line-height: 1.3;
@@ -42,9 +68,11 @@
   overflow: hidden;
 }
 
+/* 无封面 */
 .no-cover {
-  width: 140px;
-  height: 140px;
+  width: 140px !important;
+  height: 140px !important;
+  aspect-ratio: 1 / 1;
   background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
   border-radius: 6px;
   display: flex;
@@ -53,6 +81,7 @@
   font-size: 36px;
 }
 
+/* 折叠面板 */
 details {
   border: 1px solid #eaeaea;
   border-radius: 8px;
@@ -97,15 +126,25 @@ details[open] summary {
   color: #1890ff;
 }
 
+/* 移动端 */
 @media (max-width: 480px) {
   .album-grid {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 8px;
   }
-  .album-item img,
+  .album-grid .album-item img,
+  .album-grid .album-item img[loading],
+  div.album-grid div.album-item img {
+    width: 100px !important;
+    height: 100px !important;
+    min-width: 100px !important;
+    min-height: 100px !important;
+    max-width: 100px !important;
+    max-height: 100px !important;
+  }
   .no-cover {
-    width: 100px;
-    height: 100px;
+    width: 100px !important;
+    height: 100px !important;
   }
   .album-item span {
     font-size: 10px;
