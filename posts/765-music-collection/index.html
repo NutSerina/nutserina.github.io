@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>基于 Apple AAC 的偶像大师本家 Hi-Res 音频移动端优化方案与分享 | SerinaP&#39;s Blog</title>
+    <meta name="author" content="芹菜P" />
+    <meta name="description" content="已经不再是低眉顺眼的昨日，从今天开始我的传说" />
+    <meta name="keywords" content="blog, 博客, 个人博客, 芹菜P, 偶像大师, THE iDOLM@STER" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>SERINAP&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;SERINAP&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>基于 Apple AAC 的偶像大师本家 Hi-Res 音频移动端优化方案与分享</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/3/8
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                技术分享
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%81%B6%E5%83%8F%E5%A4%A7%E5%B8%88/" style="color: #ffa2c4">
+                    偶像大师
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/765AS/" style="color: #03a9f4">
+                    765AS
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E9%9F%B3%E9%A2%91%E5%A4%84%E7%90%86/" style="color: #ff7d73">
+                    音频处理
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/FFmpeg/" style="color: #03a9f4">
+                    FFmpeg
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/" style="color: #00bcd4">
+                    自动化脚本
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <div style="padding: 15px; margin-bottom: 20px; border-left: 4px solid #ff9800; background-color: #fff8e1; color: #5c3a21; border-radius: 4px;">
+  <strong>🤖 AI 辅助创作声明：</strong><br>
+  本文的技术原理解释与脚本编写由 AI 辅助生成，但核心方案、脚本代码及压制测试均由博主本人实际验证并跑通。
+</div>
+
+  
+  
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="什么是-ORT"><a href="#什么是-ORT" class="headerlink" title="什么是 ORT?"></a>什么是 ORT?</h3><p>ORT（Overtone Reconstruction Technology，泛音重构技术）是由日本哥伦比亚（Nippon Columbia）唱片公司开发的一种专业的音频升频与高解析度（Hi-Res）重制技术。</p>
+<p>简单来说，它是一种通过算法预测并重建高频倍音（泛音 &#x2F; overtones） 的技术，主要用于提升数字音频的空间感、透明度、空气感和整体听感，让声音听起来更接近模拟母带或现场的自然感。</p>
+<h3 id="ORT-的主要特点"><a href="#ORT-的主要特点" class="headerlink" title="ORT 的主要特点"></a>ORT 的主要特点</h3><ul>
+<li>针对数字录音中容易丢失的高频泛音部分进行智能补回和再构建</li>
+<li>不是简单EQ提升高频，而是基于音乐信号本身的谐波结构进行重建</li>
+<li>日本コロムビアマスタリングスタジオ的招牌技术之一</li>
+<li>常用于高解析度音源（Hi-Res）、SACD、96kHz&#x2F;24bit等母带制作</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>对于本家制作人们而言，收藏本家的 Hi-Res 音源（通常为 24Bit&#x2F;96kHz 的 FLAC 格式）是常规操作。</p>
+<p>然而，当我们需要将这些高质量音频导入移动设备、进行日常通勤聆听时，往往会面临一系列体验上的技术痛点。</p>
+<p>本文将从移动端音频处理的技术角度，探讨如何利用 Apple CoreAudio 引擎（qaac）对 Hi-Res 音频进行降维压制，并分享我已经处理好的优化版音频库，以及背后的自动化处理脚本。</p>
+<h2 id="移动端听-Hi-Res-的痛点分析"><a href="#移动端听-Hi-Res-的痛点分析" class="headerlink" title="移动端听 Hi-Res 的痛点分析"></a>移动端听 Hi-Res 的痛点分析</h2><p>在桌面端搭配独立的 DAC 与耳放，Hi-Res 音频可以发挥其最大价值。但在移动端，直接存放和播放 24Bit&#x2F;96kHz 的 FLAC 存在以下问题：</p>
+<ol>
+<li><strong>存储空间占用极大</strong>：一首 4 分钟左右的 24&#x2F;96 FLAC 文件体积通常在 100MB 到 150MB 之间。对于几百首的偶像大师曲库，直接拷入手机会迅速消耗宝贵的存储空间。</li>
+<li><strong>硬件解码支持与功耗</strong>：大多数移动端 SoC（如高通骁龙、联发科天玑）在处理极高规格的无损音频时，往往需要调用 CPU 进行软件解码（Soft Decode）。这不仅会绕开系统底层的低功耗音频 DSP，还会显著增加手机发热量与耗电量。</li>
+<li><strong>蓝牙传输协议的瓶颈</strong>：目前主流的 TWS 真无线耳机，其基础且最稳定的传输协议依然是 AAC（iOS 设备更是强制锁定 AAC）。如果你在手机上播放 Hi-Res 并通过蓝牙输出，系统底层依然会进行一次实时的有损重采样和编码。与其让手机在后台进行不可控的实时劣化，不如预先提供高质量的编码源。</li>
+</ol>
+<h2 id="为什么选择-qaac-Apple-AAC-？"><a href="#为什么选择-qaac-Apple-AAC-？" class="headerlink" title="为什么选择 qaac (Apple AAC)？"></a>为什么选择 qaac (Apple AAC)？</h2><p>为了解决上述问题，对音频进行重编码是必经之路。在众多有损编码器中，我最终选择了 <strong>qaac</strong>（调用 iTunes 底层的 CoreAudioToolbox.dll）。</p>
+<ul>
+<li><strong>音质的业界标杆</strong>：在 Hydrogenaudio 等专业音频社区的历次盲听测试中，Apple AAC-LC 编码器始终稳居榜首。在同等码率下，它对高频细节的保留和声场还原远优于 Android 系统默认的 FDK AAC 或开源的 FAAC。</li>
+<li><strong>完美的硬件解码兼容性</strong>：AAC-LC 是目前移动端硬件解码支持最完善的格式。无论是 iOS 还是 Android 设备，均可调用底层 DSP 进行极低功耗的硬解播放，大幅提升手机续航。</li>
+<li><strong>参数设置</strong>：本次压制采用了 <code>TVBR q109</code>（True VBR 动态码率）参数。该参数下的平均码率约为 250~280 kbps。<br>苹果认为，在频谱分析和实际听感上，已达到人类听觉的 “透明（Transparent）” 阈值，足以应对绝大多数通勤和日常聆听场景。</li>
+</ul>
+<blockquote>
+<p>在此之前我考虑了使用 opus 编码，但该容器对于封面和元数据的适配仍存在较大问题，最后放弃了这个选项。</p>
+</blockquote>
+<h2 id="那压制完-AAC-了-ORT-的意义在哪"><a href="#那压制完-AAC-了-ORT-的意义在哪" class="headerlink" title="那压制完 AAC 了 ORT 的意义在哪"></a>那压制完 AAC 了 ORT 的意义在哪</h2><p>完全是像 720P 的屏幕看 8K 电影一样，压制后的音频无法完全还原 ORT 的细节表现。补充 19kHz - 22kHz 的意义就没了，但是我认为，ORT 的核心价值并不完全在于高频的细节表现，而是整体的空间感、层次感和动态范围的提升。整体的听感是母带师重新调过的，会比原版 CD 好一些。</p>
+<p>说句暴论的话，其实 Hi-Res 大部分情况下还是靠脑放（<br>不如用好的有损编码器，节省下体积，我已经买不起SSD了（</p>
+<h2 id="脚本功能简介"><a href="#脚本功能简介" class="headerlink" title="脚本功能简介"></a>脚本功能简介</h2><p>为了保证元数据（Metadata）的绝对完整，本次压制没有使用简单的第三方格式转换工具，而是基于 <code>FFmpeg</code> + <code>qaac</code> 构建了标准化的处理流水线：</p>
+<ol>
+<li><strong>解码与提取</strong>：使用 FFmpeg 将 FLAC 无损解码为临时 WAV 文件，避免管道传输带来的潜在错误。</li>
+<li><strong>核心编码</strong>：通过 qaac64.exe 将 WAV 编码为纯净的 M4A (AAC-LC) 音频流。</li>
+<li><strong>元数据回填</strong>：利用 FFmpeg 的 <code>-map_metadata</code> 与 <code>-disposition:v attached_pic</code> 参数，将原版 FLAC 中的高清封面、专辑名、艺术家、音轨号等所有标签信息，平移至最终的 M4A 容器中。</li>
+</ol>
+<p>经过这套流程处理后的音频，在任何主流本地播放器（如 椒盐音乐、Poweramp、海贝音乐等）中均能完美展示封面与标签，无乱码问题。</p>
+<h2 id="资源下载与分享"><a href="#资源下载与分享" class="headerlink" title="资源下载与分享"></a>资源下载与分享</h2><p>为了方便各位同担，我已经将本家 Hi-Res 曲库按照上述标准全部压制完毕。</p>
+<ul>
+<li><strong>收录内容</strong>：曲目列表详见<a href="https://blog.imaslove.top/posts/imas-hires/">上次发布的 Hi-Res 合集</a>（包含所有 765AS 的 Hi-Res 音源）</li>
+<li><strong>压制规格</strong>：M4A 封装 &#x2F; AAC-LC 编码 &#x2F; 48kHz &#x2F; ~270kbps (TVBR q109)</li>
+<li><strong>下载链接</strong>：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Habw8hzHnOt6R0cdiYtA9Q?pwd=imas">百度网盘 [SerinaP] 765PRO ALLSTARS COLLECTION [qAAC_TVBR q109].zip</a>（提取码：imas）<br><em>注：本资源仅供同好交流与移动端试听测试使用，请支持并购买正版音源。</em></li>
+</ul>
+<h2 id="附：自动化压制脚本"><a href="#附：自动化压制脚本" class="headerlink" title="附：自动化压制脚本"></a>附：自动化压制脚本</h2><pre><code class="language-powershell"># ==========================================
+# 基于 qaac 的音频批量压制脚本 (Apple AAC)
+# 依赖环境: FFmpeg, qaac64.exe, Apple Application Support
+# ==========================================
+
+# 强制终端使用 UTF-8 避免乱码
+chcp 65001 | Out-Null
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
+
+# 路径配置 (请根据实际情况修改)
+$SourceDir = &quot;D:\Music\Source_FLAC&quot;
+$DestDir   = &quot;D:\Music\Export_M4A&quot;
+$QaacExe   = &quot;C:\Bin\ffmpeg\qaac64.exe&quot;
+
+# 检查环境
+if (-not (Test-Path -LiteralPath $QaacExe)) { 
+    Write-Host &quot;❌ 找不到 qaac64.exe！&quot; -ForegroundColor Red; return 
+}
+
+$FlacFiles = Get-ChildItem -LiteralPath $SourceDir -Filter &quot;*.flac&quot; -Recurse
+$Total = $FlacFiles.Count
+if ($Total -eq 0) { Write-Host &quot;❌ 找不到 FLAC 文件！&quot;; return }
+
+Write-Host &quot;✅ 找到 $Total 个 FLAC 文件，开始使用 Apple CoreAudio 引擎批量压制...`n&quot; -ForegroundColor Green
+
+$Counter = 0
+foreach ($file in $FlacFiles) {
+    $Counter++
+    
+    # 计算相对路径和目标路径
+    $relPath = $file.FullName.Substring($SourceDir.Length).TrimStart(&#39;\&#39;)
+    $targetFilePath = Join-Path -Path $DestDir -ChildPath $relPath
+    $targetFilePath = [System.IO.Path]::ChangeExtension($targetFilePath, &quot;.m4a&quot;)
+    $targetFolder = Split-Path -Path $targetFilePath -Parent
+
+    Write-Host &quot;[$Counter/$Total] 🍎 正在压制: $($file.Name) &quot; -NoNewline -ForegroundColor Cyan
+
+    # 自动创建目标子文件夹
+    if (-not (Test-Path -LiteralPath $targetFolder)) { 
+        New-Item -ItemType Directory -Path $targetFolder -Force | Out-Null 
+    }
+
+    # 跳过已存在的文件（断点续传）
+    if (Test-Path -LiteralPath $targetFilePath) {
+        Write-Host &quot;⏩ 已存在，跳过&quot; -ForegroundColor DarkGray
+        continue
+    }
+
+    # 使用固定纯英文临时文件名，避开所有路径解析坑
+    $tempWav = Join-Path -Path $targetFolder -ChildPath &quot;temp_audio.wav&quot;
+    $tempM4a = Join-Path -Path $targetFolder -ChildPath &quot;temp_audio.m4a&quot;
+
+    if (Test-Path -LiteralPath $tempWav) { Remove-Item -LiteralPath $tempWav -Force }
+    if (Test-Path -LiteralPath $tempM4a) { Remove-Item -LiteralPath $tempM4a -Force }
+
+    # [步骤1] 提取 WAV (静默模式)
+    $ffmpegArgs1 = @(&quot;-y&quot;, &quot;-hide_banner&quot;, &quot;-loglevel&quot;, &quot;error&quot;, &quot;-i&quot;, $file.FullName, &quot;-vn&quot;, $tempWav)
+    &amp; &quot;ffmpeg&quot; @ffmpegArgs1
+
+    if (-not (Test-Path -LiteralPath $tempWav)) { 
+        Write-Host &quot;❌ WAV提取失败&quot; -ForegroundColor Red; continue 
+    }
+
+    # [步骤2] qaac 压制 (-s 参数让它保持静默，不刷屏)
+    $qaacArgs = @(&quot;-s&quot;, &quot;-V&quot;, &quot;109&quot;, $tempWav, &quot;-o&quot;, $tempM4a)
+    &amp; $QaacExe @qaacArgs
+
+    if (-not (Test-Path -LiteralPath $tempM4a)) { 
+        Write-Host &quot;❌ 压制失败&quot; -ForegroundColor Red; continue 
+    }
+
+    # [步骤3] 回填标签与封面 (静默模式)
+    $ffmpegArgs3 = @(&quot;-y&quot;, &quot;-hide_banner&quot;, &quot;-loglevel&quot;, &quot;error&quot;, &quot;-i&quot;, $tempM4a, &quot;-i&quot;, $file.FullName, &quot;-map&quot;, &quot;0:a&quot;, &quot;-map&quot;, &quot;1:v?&quot;, &quot;-map_metadata&quot;, &quot;1&quot;, &quot;-c&quot;, &quot;copy&quot;, &quot;-disposition:v&quot;, &quot;attached_pic&quot;, $targetFilePath)
+    &amp; &quot;ffmpeg&quot; @ffmpegArgs3
+
+    # 验证最终结果 (使用 -LiteralPath 避免方括号Bug)
+    if (Test-Path -LiteralPath $targetFilePath) {
+        Write-Host &quot;✔️ 完成&quot; -ForegroundColor Green
+        # 成功后清理临时文件
+        Remove-Item -LiteralPath $tempWav -Force
+        Remove-Item -LiteralPath $tempM4a -Force
+    } else {
+        Write-Host &quot;❌ 封装失败&quot; -ForegroundColor Red
+    }
+}
+
+Write-Host &quot;`n🎉 所有任务处理完毕！赶快把音乐导进手机里听听看吧！&quot; -ForegroundColor Green
+</code></pre>
+<p>希望这套方案能为各位制作人带来更好的移动端听歌体验。<br>これからも、アイマスですよ、アイマス！</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 SerinaP&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;芹菜P
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="NutSerina/nutserina.github.io"
+    data-repo-id="R_kgDOQi6hvw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQi6hv84CzbAr"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
