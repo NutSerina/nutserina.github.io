@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>数据结构笔记 第一章 绪论 | SerinaP&#39;s Blog</title>
+    <meta name="author" content="芹菜P" />
+    <meta name="description" content="已经不再是低眉顺眼的昨日，从今天开始我的传说" />
+    <meta name="keywords" content="blog, 博客, 个人博客, 芹菜P, 偶像大师, THE iDOLM@STER" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>SERINAP&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;SERINAP&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>数据结构笔记 第一章 绪论</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/3/11
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                数据结构课堂笔记
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="color: #03a9f4">
+                    数据结构
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">
+                    课堂笔记
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="第一节-什么是数据结构"><a href="#第一节-什么是数据结构" class="headerlink" title="第一节 什么是数据结构"></a>第一节 什么是数据结构</h1><h2 id="一、学习目标"><a href="#一、学习目标" class="headerlink" title="一、学习目标"></a>一、学习目标</h2><ul>
+<li>理解什么是数据结构</li>
+<li>明确学习数据结构的意义</li>
+</ul>
+<h2 id="二、什么是数据结构"><a href="#二、什么是数据结构" class="headerlink" title="二、什么是数据结构"></a>二、什么是数据结构</h2><h3 id="1-引入问题"><a href="#1-引入问题" class="headerlink" title="1. 引入问题"></a>1. 引入问题</h3><p>在计算机科学中，我们经常遇到各种类型的问题。通过以下三个典型问题，我们可以理解数据结构的重要性：</p>
+<h4 id="【问题一】建立学生电子信息档案"><a href="#【问题一】建立学生电子信息档案" class="headerlink" title="【问题一】建立学生电子信息档案"></a>【问题一】建立学生电子信息档案</h4><p>需要存储学生的各项信息（学号、姓名、性别、院系、专业、籍贯、成绩、获奖情况等），并且方便查询和管理。这类问题涉及大量同类型数据的存储和操作，适合使用<strong>线性表（表）结构</strong>来解决。</p>
+<blockquote>
+<p>线性表是最基本、最简单、也是最常用的一种数据结构，一个线性表是n个具有相同特性的数据元素的有限序列。</p>
+</blockquote>
+<h4 id="【问题二】N皇后问题"><a href="#【问题二】N皇后问题" class="headerlink" title="【问题二】N皇后问题"></a>【问题二】N皇后问题</h4><p>有一个N×N的国际象棋棋盘，要求在上面放置N个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。这类问题具有明显的层次关系和分支特性，适合使用**树（树形结构）**来描述和求解。</p>
+<blockquote>
+<p>树形结构是一种非线性的数据结构，它是由n（n≥0）个有限结点组成一个具有层次关系的集合。</p>
+</blockquote>
+<h4 id="【问题三】地图导航"><a href="#【问题三】地图导航" class="headerlink" title="【问题三】地图导航"></a>【问题三】地图导航</h4><p>把各地抽象为点，地点之间的路抽象为连接两点的线。我们可在图中解决和讨论诸如查找路径等问题。这类问题涉及多对多的复杂关系，适合使用**图（图形结构）**来表示。</p>
+<blockquote>
+<p>图是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为G(V,E)，其中G表示一个图，V是图G中顶点的集合，E是图G中边的集合。</p>
+</blockquote>
+<h3 id="2-数据结构的定义"><a href="#2-数据结构的定义" class="headerlink" title="2. 数据结构的定义"></a>2. 数据结构的定义</h3><p>以上三个问题不像数值类问题那样，可以建立合适的数学模型，利用数学方程来求解。我们找不到描述它们的数学方程，而在这几个问题的解决方案中，分别使用了表、树、图之类的数据结构。</p>
+<div style="background-color: #FFF2CC; padding: 15px; border-left: 4px solid #FFB800; margin: 20px 0;">
+<b>数据结构是一门研究非数值计算的程序设计中数据及数据间的关系和操作的学科。</b>
+</div>
+
+<h2 id="三、学习数据结构的意义"><a href="#三、学习数据结构的意义" class="headerlink" title="三、学习数据结构的意义"></a>三、学习数据结构的意义</h2><h3 id="1-程序的本质"><a href="#1-程序的本质" class="headerlink" title="1. 程序的本质"></a>1. 程序的本质</h3><p>著名计算机科学家尼古拉斯·沃思提出了一个著名的公式：</p>
+<div style="background-color: #FFF2CC; padding: 15px; border-left: 4px solid #FFB800; margin: 20px 0; text-align: center; font-size: 1.2em;">
+<b>算法 + 数据结构 = 程序</b>
+</div>
+
+<p>这个公式告诉我们程序的本质是什么：程序的本质就是对确定的问题选择一种好的结构，加上设计一种好的算法。所以我们要想写出好程序，就必须有两方面的知识：算法和数据结构，这两方面正是我们这门课的学习内容。</p>
+<h3 id="2-数据结构课程的内容"><a href="#2-数据结构课程的内容" class="headerlink" title="2. 数据结构课程的内容"></a>2. 数据结构课程的内容</h3><p>数据结构课程主要包含以下内容：</p>
+<ul>
+<li><strong>常用数据结构</strong>：学习各种基本数据结构（如线性表、栈、队列、树、图等）的定义、特性和实现方法</li>
+<li><strong>经典算法</strong>：学习与各种数据结构相关的经典算法，如排序、查找、遍历等</li>
+<li><strong>评价和优化</strong>：学习如何评价算法和数据结构的优劣，以及如何进行优化</li>
+<li><strong>实际问题解决</strong>：将所学知识应用于解决实际问题</li>
+</ul>
+<hr>
+<h1 id="第二节-初识算法"><a href="#第二节-初识算法" class="headerlink" title="第二节 初识算法"></a>第二节 初识算法</h1><h2 id="一、学习目标-1"><a href="#一、学习目标-1" class="headerlink" title="一、学习目标"></a>一、学习目标</h2><ul>
+<li>掌握算法的定义、特点</li>
+<li>掌握算法的常用描述方法</li>
+<li>明确算法设计的要求</li>
+</ul>
+<h2 id="二、什么是算法"><a href="#二、什么是算法" class="headerlink" title="二、什么是算法"></a>二、什么是算法</h2><p>算法是解决问题的策略或步骤。著名计算机科学家D.E.Knuth在《The Art of Computer Programming》中给出定义：</p>
+<div style="background-color: #FFF2CC; padding: 15px; border-left: 4px solid #FFB800; margin: 20px 0;">
+<b>算法是有穷规则的集合，其中的规则规定了解决某特点类型问题的运算序列。</b>
+</div>
+
+<h2 id="三、算法的特性"><a href="#三、算法的特性" class="headerlink" title="三、算法的特性"></a>三、算法的特性</h2><p>一个算法必须具备以下五个基本特性：</p>
+<table>
+<thead>
+<tr>
+<th align="center">特性</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>有穷性</strong></td>
+<td align="left">算法必须在执行有穷步之后结束，且每一步都可在有穷时间内完成。这是算法最基本的特征，保证了算法能够终止。</td>
+</tr>
+<tr>
+<td align="center"><strong>确定性</strong></td>
+<td align="left">算法中的每一步运算都必须有确切的含义，不能产生歧义。并且，在任何条件下，算法只有唯一的执行路径。这保证了算法的执行结果是确定的。</td>
+</tr>
+<tr>
+<td align="center"><strong>可行性</strong></td>
+<td align="left">算法中所描述的操作都必须在计算机可处理的范围内，即每个操作都可以通过已经实现的基本运算执行有限次来完成。</td>
+</tr>
+<tr>
+<td align="center"><strong>有输入</strong></td>
+<td align="left">算法执行时，一般会接受一些数据的输入。输入可以是零个或多个，这些输入取自于某个特定的对象集合。</td>
+</tr>
+<tr>
+<td align="center"><strong>有输出</strong></td>
+<td align="left">算法一定要给出一个或多个输出，也就是问题求解的结论。输出是算法对输入数据处理后的结果。</td>
+</tr>
+</tbody></table>
+<h2 id="四、如何描述算法"><a href="#四、如何描述算法" class="headerlink" title="四、如何描述算法"></a>四、如何描述算法</h2><p>算法的描述方法主要有以下几种：</p>
+<h3 id="1-自然语言"><a href="#1-自然语言" class="headerlink" title="1. 自然语言"></a>1. 自然语言</h3><p>使用人们日常使用的语言来描述算法。优点是通俗易懂，不需要专门的训练；缺点是容易产生歧义，不够精确，对于复杂的算法描述起来比较冗长。</p>
+<h3 id="2-流程图"><a href="#2-流程图" class="headerlink" title="2. 流程图"></a>2. 流程图</h3><p>使用图形符号来描述算法。流程图用一些图框来表示各种操作，用箭头来表示算法执行的先后顺序。优点是直观形象，易于理解；缺点是画起来比较麻烦，对于复杂的算法，流程图会变得很大。</p>
+<h3 id="3-高级语言"><a href="#3-高级语言" class="headerlink" title="3. 高级语言"></a>3. 高级语言</h3><p>使用某种高级程序设计语言（如C、C++、Java、Python等）来描述算法。优点是可以直接在计算机上运行，验证算法的正确性；缺点是需要掌握具体的编程语言，且代码细节较多，有时会掩盖算法的主要思想。</p>
+<h3 id="4-伪码语言（类C语言）"><a href="#4-伪码语言（类C语言）" class="headerlink" title="4. 伪码语言（类C语言）"></a>4. 伪码语言（类C语言）</h3><p>使用介于自然语言和高级语言之间的伪代码来描述算法。伪代码采用类似于高级语言的语法结构，但忽略具体的语法细节。优点是突出了算法主体，结构清晰，便于阅读和分析，比较接近程序，便于实现。这是数据结构课程中常用的算法描述方法。</p>
+<h2 id="五、怎样才是好算法"><a href="#五、怎样才是好算法" class="headerlink" title="五、怎样才是好算法"></a>五、怎样才是好算法</h2><p>一个好的算法应该满足以下四个方面的要求：</p>
+<table>
+<thead>
+<tr>
+<th align="center">要求</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>正确性</strong></td>
+<td align="left">算法应当满足具体问题的需求，这是最基本的要求。正确的算法能够对所有的合法输入数据都能产生满足规格说明要求的结果。</td>
+</tr>
+<tr>
+<td align="center"><strong>可读性</strong></td>
+<td align="left">算法重在交流，其次才是机器的执行。好的可读性有助于人们对算法的理解。清晰的命名、适当的注释、良好的结构都有助于提高可读性。</td>
+</tr>
+<tr>
+<td align="center"><strong>健壮性</strong></td>
+<td align="left">当算法面对非法输入数据时，要能适当做出反应或处理，而不是产生莫名其妙的输出结果。健壮性要求算法能够对输入数据进行合法性检查，并对非法数据做出恰当的处理。</td>
+</tr>
+<tr>
+<td align="center"><strong>效率与低存储</strong></td>
+<td align="left">高效的算法指用时短，低存储指使用存储空间少。在满足正确性、可读性和健壮性的前提下，应该尽量提高算法的执行效率，减少存储空间的占用。</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="第三节-算法效率的衡量和评价"><a href="#第三节-算法效率的衡量和评价" class="headerlink" title="第三节 算法效率的衡量和评价"></a>第三节 算法效率的衡量和评价</h1><h2 id="一、学习目标-2"><a href="#一、学习目标-2" class="headerlink" title="一、学习目标"></a>一、学习目标</h2><ul>
+<li>掌握算法时间、空间性能评价方法</li>
+<li>熟练掌握时间复杂度评价算法时间性能的方法</li>
+<li>熟练掌握空间复杂度评价算法空间性能的方法</li>
+</ul>
+<h2 id="二、算法时间性能的评价"><a href="#二、算法时间性能的评价" class="headerlink" title="二、算法时间性能的评价"></a>二、算法时间性能的评价</h2><h3 id="1-引入问题-1"><a href="#1-引入问题-1" class="headerlink" title="1. 引入问题"></a>1. 引入问题</h3><p>考虑计算a的1500000000次方的问题。如果使用简单的循环乘法，需要进行1500000000-1次乘法，效率极低。而使用快速幂算法，当n为15亿时，仅需要做约45次乘法！这说明不同算法的效率可能相差巨大，因此我们需要科学的方法来评价算法的时间性能。</p>
+<h3 id="2-评价方法"><a href="#2-评价方法" class="headerlink" title="2. 评价方法"></a>2. 评价方法</h3><p>评价算法时间性能通常有两种方法：</p>
+<h4 id="（1）事后统计法"><a href="#（1）事后统计法" class="headerlink" title="（1）事后统计法"></a>（1）事后统计法</h4><p>依据算法编写出程序，不同算法的程序可通过一组或若干组相同的测试数据，利用计算机内部的计时功能来分辨其优劣。但这种方法有明显缺陷：</p>
+<ul>
+<li>一是需要将算法编写为程序</li>
+<li>二是程序的运行时间受到计算机的硬件、软件等因素的影响，会掩盖算法的本质</li>
+</ul>
+<h4 id="（2）事前分析估算法"><a href="#（2）事前分析估算法" class="headerlink" title="（2）事前分析估算法"></a>（2）事前分析估算法</h4><p>不需要将算法实现为程序，抛开了计算机环境因素的影响，通过对算法本身的分析，计算出算法的时间性能。该方法认为一个特定算法的运行工作量的大小，只依赖于问题的规模，或者说是问题规模的函数。</p>
+<h3 id="3-时间复杂度"><a href="#3-时间复杂度" class="headerlink" title="3. 时间复杂度"></a>3. 时间复杂度</h3><p>设n为问题规模，T(n)为算法的时间复杂性，它描述算法执行过程中所需的时间用量与问题规模n之间的函数关系。</p>
+<p>首先，计算算法中原操作重复执行的次数，它是问题规模的函数，将它记为f(n)，以此作为算法时间的度量。</p>
+<div style="background-color: #FFF2CC; padding: 15px; border-left: 4px solid #FFB800; margin: 20px 0;">
+<b>算法的时间复杂性度量记作：T(n) = O(f(n))</b>
+</div>
+
+<p>这表示随问题规模n的增大，算法的执行时间的增长趋势和f(n)的增长趋势相同，称作算法的渐进时间复杂度，简称时间复杂度。在同一问题中，可根据时间复杂度判定算法时间效率的优劣。</p>
+<h3 id="4-常见时间复杂度"><a href="#4-常见时间复杂度" class="headerlink" title="4. 常见时间复杂度"></a>4. 常见时间复杂度</h3><p>常见的时间复杂度及其增长趋势如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th align="center">时间复杂度</th>
+<th align="center">n&#x3D;1</th>
+<th align="center">n&#x3D;2</th>
+<th align="center">n&#x3D;4</th>
+<th align="center">n&#x3D;8</th>
+<th align="center">n&#x3D;16</th>
+<th align="center">n&#x3D;32</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">常数阶 O(1)</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">对数阶 O(logn)</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+</tr>
+<tr>
+<td align="center">线性阶 O(n)</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td align="center">8</td>
+<td align="center">16</td>
+<td align="center">32</td>
+</tr>
+<tr>
+<td align="center">线性对数阶 O(nlogn)</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">8</td>
+<td align="center">24</td>
+<td align="center">64</td>
+<td align="center">160</td>
+</tr>
+<tr>
+<td align="center">平方阶 O(n²)</td>
+<td align="center">1</td>
+<td align="center">4</td>
+<td align="center">16</td>
+<td align="center">64</td>
+<td align="center">256</td>
+<td align="center">1024</td>
+</tr>
+<tr>
+<td align="center">指数阶 O(2ⁿ)</td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td align="center">16</td>
+<td align="center">256</td>
+<td align="center">65536</td>
+<td align="center">4.3×10⁹</td>
+</tr>
+<tr>
+<td align="center">阶乘阶 O(n!)</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">24</td>
+<td align="center">40326</td>
+<td align="center">2.1×10¹³</td>
+<td align="center">2.6×10³⁵</td>
+</tr>
+</tbody></table>
+<div style="background-color: #FFE6E6; padding: 15px; border-left: 4px solid #FF4444; margin: 20px 0;">
+<b>注意：</b>从表中可以看出，指数阶和阶乘阶的时间复杂度增长趋势都非常迅速，效率极差，应尽量避免使用这类算法。
+</div>
+
+<h2 id="三、算法空间性能的评价"><a href="#三、算法空间性能的评价" class="headerlink" title="三、算法空间性能的评价"></a>三、算法空间性能的评价</h2><h3 id="1-空间复杂度"><a href="#1-空间复杂度" class="headerlink" title="1. 空间复杂度"></a>1. 空间复杂度</h3><p>空间复杂度记作S(n)，通常也表示为大O(f(n))。它描述算法执行过程中所需的存储空间与问题规模n之间的函数关系。</p>
+<h3 id="2-算法占用内存空间的成分"><a href="#2-算法占用内存空间的成分" class="headerlink" title="2. 算法占用内存空间的成分"></a>2. 算法占用内存空间的成分</h3><p>算法在运行过程中占用的内存空间主要包括以下几个部分：</p>
+<ul>
+<li><strong>输入的数据</strong>：算法处理所需的原始数据所占用的存储空间</li>
+<li><strong>程序代码本身</strong>：编译后的程序代码所占用的存储空间</li>
+<li><strong>额外辅助空间</strong>：为实现算法所需的额外辅助空间，如临时变量、递归调用栈等</li>
+</ul>
+<h2 id="四、本节小结"><a href="#四、本节小结" class="headerlink" title="四、本节小结"></a>四、本节小结</h2><p>算法的衡量与评价是数据结构课程的重要内容。通过时间复杂度和空间复杂度，我们可以科学有效地评价算法的性能优劣。在实际应用中，需要在时间效率和空间效率之间进行权衡，选择最适合具体问题的算法。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 SerinaP&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;芹菜P
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="NutSerina/nutserina.github.io"
+    data-repo-id="R_kgDOQi6hvw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQi6hv84CzbAr"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
