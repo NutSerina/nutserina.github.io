@@ -154,61 +154,64 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>偶像大师本家CD整理聚合贴【2026年更新】</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2026/2/22
-        </span>
-        
-        <span class="category">
-            <a href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">
+            
+
+<div id="post-container">
+    <div class="article">
+        <div>
+            <h1>偶像大师本家CD整理聚合贴【2026年更新】</h1>
+        </div>
+        <div class="info">
+            <span class="date">
                 <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                    <i class="fa-solid fa-calendar fa-fw"></i>
                 </span>
-                资源分享
-            </a>
-        </span>
-        
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
+                2026/2/22
             </span>
             
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%81%B6%E5%83%8F%E5%A4%A7%E5%B8%88/" style="color: #ffa2c4">
-                    偶像大师
+            <span class="category">
+                <a href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    资源分享
                 </a>
             </span>
             
-            <span class="tag">
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
                 
-                <a href="/tags/765AS/" style="color: #00bcd4">
-                    765AS
-                </a>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/%E5%81%B6%E5%83%8F%E5%A4%A7%E5%B8%88/" style="color: #00bcd4">
+                        偶像大师
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/765AS/" style="color: #00a596">
+                        765AS
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/CD/" style="color: #ff7d73">
+                        CD
+                    </a>
+                </span>
+                
             </span>
             
-            <span class="tag">
-                
-                <a href="/tags/CD/" style="color: #ff7d73">
-                    CD
-                </a>
-            </span>
-            
-        </span>
+        </div>
         
-    </div>
-    
-    <div class="content" v-pre>
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>偶像大师本家 20 年几乎全部 CD 的 flac 资源已经整理完毕并上传，目前采用百度网盘分流，每一张 CD 打包为一个 rar 文件。  </p>
+        <div class="content" v-pre>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>偶像大师本家 20 年几乎全部 CD 的 flac 资源已经整理完毕并上传，目前采用百度网盘分流，每一张 CD 打包为一个 rar 文件。  </p>
 <p>整理：<a target="_blank" rel="noopener" href="https://space.bilibili.com/1726354044">芹菜P</a></p>
 <p>感谢：<a target="_blank" rel="noopener" href="https://space.bilibili.com/1646187">pm</a>，ZheiZhei，<a target="_blank" rel="noopener" href="https://space.bilibili.com/139158">luckyluke</a>，<a target="_blank" rel="noopener" href="https://space.bilibili.com/38750010">依旧是你的光</a>，<a target="_blank" rel="noopener" href="https://space.bilibili.com/93645508">CopperasP</a>，水冰淼以及 <a target="_blank" rel="noopener" href="https://qm.qq.com/q/xqXzD5n3SC">iM@S制作人同好会</a> 所有群友的大力支持！😭</p>
 <p><a target="_blank" rel="noopener" href="https://space.bilibili.com/398481435">BilyHurington</a> 帮助我提供了缺损文件的目录，感谢纠正！</p>
@@ -2173,19 +2176,37 @@
 <p>💡 提示：善用浏览器 <code>Ctrl+F</code> 搜索关键词可快速定位！</p>
 </blockquote>
 
+        </div>
+        
+        
+        
+        
+        <div id="comment">
+            <div id="giscus-container" class="giscus"></div>
+        </div>
+        
+        
+        
+        
     </div>
-    
-    
-    
-    
-    <div id="comment">
-        <div id="giscus-container" class="giscus"></div>
-    </div>
-    
-    
-    
-    
 </div>
+<aside class="toc-sidebar">
+    <div class="toc-title">目录</div>
+    <nav class="toc-nav"></nav>
+</aside>
+<button class="toc-floating-btn" @click="tocDrawerOpen = true">
+    <i class="fa-solid fa-list-ul"></i>
+</button>
+<transition name="fade">
+    <div class="toc-drawer-mask" v-show="tocDrawerOpen" @click="tocDrawerOpen = false"></div>
+</transition>
+<transition name="slide-right">
+    <div class="toc-drawer" v-show="tocDrawerOpen">
+        <div class="toc-drawer-title">目录<i class="fa-solid fa-xmark" @click="tocDrawerOpen = false"></i></div>
+        <nav class="toc-drawer-nav"></nav>
+    </div>
+</transition>
+
 
             <footer id="footer">
     <div id="footer-wrap">
@@ -2199,7 +2220,7 @@
         </div>
         <div>
             Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
-            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+            <a target="_blank" rel="noopener" href="https://github.com/Serina765P/hexo-theme-particlexplus">ParticleX Plus Theme</a>
         </div>
         
     </div>

@@ -154,57 +154,78 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>小站建立</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2025/12/5
-        </span>
-        
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
+            
+
+<div id="post-container">
+    <div class="article">
+        <div>
+            <h1>小站建立</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2025/12/5
             </span>
             
             
-            <span class="tag">
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
                 
-                <a href="/tags/%E5%85%AC%E5%91%8A/" style="color: #03a9f4">
-                    公告
-                </a>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/%E5%85%AC%E5%91%8A/" style="color: #ffa2c4">
+                        公告
+                    </a>
+                </span>
+                
             </span>
             
-        </span>
+        </div>
         
-    </div>
-    
-    <div class="content" v-pre>
-        <h1 id="为啥建了个站？"><a href="#为啥建了个站？" class="headerlink" title="为啥建了个站？"></a>为啥建了个站？</h1><p>我之前在做偶像大师资源站，但是最近我的微软E5账号爆炸了，所以迁移资源到了百度网盘，并且以博客的形式分享。<br>其实我写过静态博客，但是后来搁置了（  </p>
-<h1 id="以后写什么？"><a href="#以后写什么？" class="headerlink" title="以后写什么？"></a>以后写什么？</h1><ul>
+        <div class="content" v-pre>
+            <h2 id="为啥建了个站？"><a href="#为啥建了个站？" class="headerlink" title="为啥建了个站？"></a>为啥建了个站？</h2><p>我之前在做偶像大师资源站，但是最近我的微软E5账号爆炸了，所以迁移资源到了百度网盘，并且以博客的形式分享。<br>其实我写过静态博客，但是后来搁置了（  </p>
+<h2 id="以后写什么？"><a href="#以后写什么？" class="headerlink" title="以后写什么？"></a>以后写什么？</h2><ul>
 <li>偶像大师系列的资源分享（量很大，会慢慢整理）</li>
 <li>个人闲聊</li>
 <li>技术分享，一些教程（就当锻炼措辞了）</li>
 </ul>
 
+        </div>
+        
+        
+        
+        
+        <div id="comment">
+            <div id="giscus-container" class="giscus"></div>
+        </div>
+        
+        
+        
+        
     </div>
-    
-    
-    
-    
-    <div id="comment">
-        <div id="giscus-container" class="giscus"></div>
-    </div>
-    
-    
-    
-    
 </div>
+<aside class="toc-sidebar">
+    <div class="toc-title">目录</div>
+    <nav class="toc-nav"></nav>
+</aside>
+<button class="toc-floating-btn" @click="tocDrawerOpen = true">
+    <i class="fa-solid fa-list-ul"></i>
+</button>
+<transition name="fade">
+    <div class="toc-drawer-mask" v-show="tocDrawerOpen" @click="tocDrawerOpen = false"></div>
+</transition>
+<transition name="slide-right">
+    <div class="toc-drawer" v-show="tocDrawerOpen">
+        <div class="toc-drawer-title">目录<i class="fa-solid fa-xmark" @click="tocDrawerOpen = false"></i></div>
+        <nav class="toc-drawer-nav"></nav>
+    </div>
+</transition>
+
 
             <footer id="footer">
     <div id="footer-wrap">
@@ -218,7 +239,7 @@
         </div>
         <div>
             Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
-            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+            <a target="_blank" rel="noopener" href="https://github.com/Serina765P/hexo-theme-particlexplus">ParticleX Plus Theme</a>
         </div>
         
     </div>

@@ -155,75 +155,78 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>偶像大师本家Hi-Res高解析度音频整理聚合贴【2026年更新】</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2026/2/23
-        </span>
-        
-        <span class="category">
-            <a href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">
+            
+
+<div id="post-container">
+    <div class="article">
+        <div>
+            <h1>偶像大师本家Hi-Res高解析度音频整理聚合贴【2026年更新】</h1>
+        </div>
+        <div class="info">
+            <span class="date">
                 <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                    <i class="fa-solid fa-calendar fa-fw"></i>
                 </span>
-                资源分享
-            </a>
-        </span>
+                2026/2/23
+            </span>
+            
+            <span class="category">
+                <a href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    资源分享
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/%E5%81%B6%E5%83%8F%E5%A4%A7%E5%B8%88/" style="color: #ffa2c4">
+                        偶像大师
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/765AS/" style="color: #00bcd4">
+                        765AS
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Hi-Res/" style="color: #ffa2c4">
+                        Hi-Res
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/FLAC/" style="color: #ff7d73">
+                        FLAC
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/%E9%9F%B3%E4%B9%90%E8%B5%84%E6%BA%90/" style="color: #00a596">
+                        音乐资源
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
         
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%81%B6%E5%83%8F%E5%A4%A7%E5%B8%88/" style="color: #03a9f4">
-                    偶像大师
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/765AS/" style="color: #ffa2c4">
-                    765AS
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/Hi-Res/" style="color: #03a9f4">
-                    Hi-Res
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/FLAC/" style="color: #ffa2c4">
-                    FLAC
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E9%9F%B3%E4%B9%90%E8%B5%84%E6%BA%90/" style="color: #00a596">
-                    音乐资源
-                </a>
-            </span>
-            
-        </span>
-        
-    </div>
-    
-    <div class="content" v-pre>
-        <!-- custom_css: /css/imas-album.css -->
+        <div class="content" v-pre>
+            <!-- custom_css: /css/imas-album.css -->
 
 
 <blockquote>
@@ -2470,19 +2473,37 @@
 <hr>
 <script src="/js/album-blur.js" defer></script>
 
+        </div>
+        
+        
+        
+        
+        <div id="comment">
+            <div id="giscus-container" class="giscus"></div>
+        </div>
+        
+        
+        
+        
     </div>
-    
-    
-    
-    
-    <div id="comment">
-        <div id="giscus-container" class="giscus"></div>
-    </div>
-    
-    
-    
-    
 </div>
+<aside class="toc-sidebar">
+    <div class="toc-title">目录</div>
+    <nav class="toc-nav"></nav>
+</aside>
+<button class="toc-floating-btn" @click="tocDrawerOpen = true">
+    <i class="fa-solid fa-list-ul"></i>
+</button>
+<transition name="fade">
+    <div class="toc-drawer-mask" v-show="tocDrawerOpen" @click="tocDrawerOpen = false"></div>
+</transition>
+<transition name="slide-right">
+    <div class="toc-drawer" v-show="tocDrawerOpen">
+        <div class="toc-drawer-title">目录<i class="fa-solid fa-xmark" @click="tocDrawerOpen = false"></i></div>
+        <nav class="toc-drawer-nav"></nav>
+    </div>
+</transition>
+
 
             <footer id="footer">
     <div id="footer-wrap">
@@ -2496,7 +2517,7 @@
         </div>
         <div>
             Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
-            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+            <a target="_blank" rel="noopener" href="https://github.com/Serina765P/hexo-theme-particlexplus">ParticleX Plus Theme</a>
         </div>
         
     </div>

@@ -154,54 +154,57 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>数据结构笔记 第一章 绪论</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2026/3/11
-        </span>
-        
-        <span class="category">
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+            
+
+<div id="post-container">
+    <div class="article">
+        <div>
+            <h1>数据结构笔记 第一章 绪论</h1>
+        </div>
+        <div class="info">
+            <span class="date">
                 <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                    <i class="fa-solid fa-calendar fa-fw"></i>
                 </span>
-                数据结构课堂笔记
-            </a>
-        </span>
-        
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
+                2026/3/11
             </span>
             
-            
-            <span class="tag">
-                
-                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="color: #ffa2c4">
-                    数据结构
+            <span class="category">
+                <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    数据结构课堂笔记
                 </a>
             </span>
             
-            <span class="tag">
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
                 
-                <a href="/tags/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">
-                    课堂笔记
-                </a>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="color: #03a9f4">
+                        数据结构
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" style="color: #ff7d73">
+                        课堂笔记
+                    </a>
+                </span>
+                
             </span>
             
-        </span>
+        </div>
         
-    </div>
-    
-    <div class="content" v-pre>
-        <h1 id="第一节-什么是数据结构"><a href="#第一节-什么是数据结构" class="headerlink" title="第一节 什么是数据结构"></a>第一节 什么是数据结构</h1><h2 id="一、学习目标"><a href="#一、学习目标" class="headerlink" title="一、学习目标"></a>一、学习目标</h2><ul>
+        <div class="content" v-pre>
+            <h1 id="第一节-什么是数据结构"><a href="#第一节-什么是数据结构" class="headerlink" title="第一节 什么是数据结构"></a>第一节 什么是数据结构</h1><h2 id="一、学习目标"><a href="#一、学习目标" class="headerlink" title="一、学习目标"></a>一、学习目标</h2><ul>
 <li>理解什么是数据结构</li>
 <li>明确学习数据结构的意义</li>
 </ul>
@@ -417,19 +420,37 @@
 </ul>
 <h2 id="四、本节小结"><a href="#四、本节小结" class="headerlink" title="四、本节小结"></a>四、本节小结</h2><p>算法的衡量与评价是数据结构课程的重要内容。通过时间复杂度和空间复杂度，我们可以科学有效地评价算法的性能优劣。在实际应用中，需要在时间效率和空间效率之间进行权衡，选择最适合具体问题的算法。</p>
 
+        </div>
+        
+        
+        
+        
+        <div id="comment">
+            <div id="giscus-container" class="giscus"></div>
+        </div>
+        
+        
+        
+        
     </div>
-    
-    
-    
-    
-    <div id="comment">
-        <div id="giscus-container" class="giscus"></div>
-    </div>
-    
-    
-    
-    
 </div>
+<aside class="toc-sidebar">
+    <div class="toc-title">目录</div>
+    <nav class="toc-nav"></nav>
+</aside>
+<button class="toc-floating-btn" @click="tocDrawerOpen = true">
+    <i class="fa-solid fa-list-ul"></i>
+</button>
+<transition name="fade">
+    <div class="toc-drawer-mask" v-show="tocDrawerOpen" @click="tocDrawerOpen = false"></div>
+</transition>
+<transition name="slide-right">
+    <div class="toc-drawer" v-show="tocDrawerOpen">
+        <div class="toc-drawer-title">目录<i class="fa-solid fa-xmark" @click="tocDrawerOpen = false"></i></div>
+        <nav class="toc-drawer-nav"></nav>
+    </div>
+</transition>
+
 
             <footer id="footer">
     <div id="footer-wrap">
@@ -443,7 +464,7 @@
         </div>
         <div>
             Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
-            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+            <a target="_blank" rel="noopener" href="https://github.com/Serina765P/hexo-theme-particlexplus">ParticleX Plus Theme</a>
         </div>
         
     </div>
