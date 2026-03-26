@@ -1,0 +1,1973 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>数据结构笔记 第三章 栈和队列 | SerinaP&#39;s Blog</title>
+    <meta name="author" content="芹菜P" />
+    <meta name="description" content="已经不再是低眉顺眼的昨日，从今天开始我的传说" />
+    <meta name="keywords" content="blog, 博客, 个人博客, 芹菜P, 偶像大师, THE iDOLM@STER" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>SERINAP&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;SERINAP&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            
+
+<div id="post-container">
+    <div class="article">
+        <div>
+            <h1>数据结构笔记 第三章 栈和队列</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2026/3/26
+            </span>
+            
+            <span class="category">
+                <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    数据结构课堂笔记
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="color: #03a9f4">
+                        数据结构
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" style="color: #ffa2c4">
+                        课堂笔记
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+        
+        <div class="content" v-pre>
+            <h2 id="第一节-栈"><a href="#第一节-栈" class="headerlink" title="第一节 栈"></a>第一节 栈</h2><h3 id="一、栈的定义"><a href="#一、栈的定义" class="headerlink" title="一、栈的定义"></a>一、栈的定义</h3><p>栈（stack）是仅允许在一端进行插入和删除的线性表。</p>
+<ul>
+<li><strong>栈顶</strong>：进行插入、删除操作的一端</li>
+<li><strong>栈底</strong>：另一端</li>
+<li><strong>操作特点</strong>：后进先出（LIFO, Last In First Out）</li>
+<li><strong>插入操作</strong>：入栈、进栈、压栈（Push）</li>
+<li><strong>删除操作</strong>：出栈、弹栈（Pop）</li>
+</ul>
+<div style="background-color: #FFF2CC; padding: 15px; border-left: 4px solid #FFB800; margin: 20px 0;">
+<b>栈的本质：它仍然是线性表，只是操作被限制在同一端进行。</b>
+</div>
+
+<h3 id="二、栈的应用场景"><a href="#二、栈的应用场景" class="headerlink" title="二、栈的应用场景"></a>二、栈的应用场景</h3><p>栈是一个非常常见的数据结构，典型应用包括：</p>
+<ul>
+<li>十进制整数转换为P进制整数</li>
+<li>括号匹配</li>
+<li>表达式求值（操作符栈、操作数栈）</li>
+<li>函数调用与返回</li>
+<li>递归过程的实现</li>
+</ul>
+<p>这些问题的共同特点是：<strong>后处理的信息往往先被取出</strong>，因此适合使用栈。</p>
+<hr>
+<h2 id="第二节-顺序栈"><a href="#第二节-顺序栈" class="headerlink" title="第二节 顺序栈"></a>第二节 顺序栈</h2><h3 id="一、顺序栈的存储思想"><a href="#一、顺序栈的存储思想" class="headerlink" title="一、顺序栈的存储思想"></a>一、顺序栈的存储思想</h3><p>对于 C&#x2F;C++，通常使用数组表示栈的存储空间，用 <code>top</code> 表示栈顶位置。</p>
+<ul>
+<li>数组下标从 <code>0</code> 开始</li>
+<li>默认 <code>bottom = 0</code></li>
+<li>栈顶方向为下标增大的方向</li>
+<li>对于空栈，<code>top = 0</code></li>
+</ul>
+<p>这里的 <code>top</code> 不代表栈顶元素的下标，而是可以理解为：</p>
+<div style="background-color: #FFF2CC; padding: 15px; border-left: 4px solid #FFB800; margin: 20px 0; text-align: center;">
+<b>top = 栈顶元素位置 + 1</b>
+</div>
+
+<p>因此：</p>
+<ul>
+<li>空栈时 <code>top = 0</code></li>
+<li>栈顶元素为 <code>s.elem[s.top-1]</code></li>
+<li>栈中元素个数也正好等于 <code>top</code></li>
+</ul>
+<h3 id="二、顺序栈类型定义"><a href="#二、顺序栈类型定义" class="headerlink" title="二、顺序栈类型定义"></a>二、顺序栈类型定义</h3><pre><code class="language-c">#define MAXSIZE 100
+
+typedef struct {
+    ElemType *elem;
+    int top;
+} SqStack;
+</code></pre>
+<p>这个定义与顺序表形式上很接近，本质上是用一段连续存储空间保存元素，用 <code>top</code> 记录当前栈高。</p>
+<h3 id="三、顺序栈的基本操作"><a href="#三、顺序栈的基本操作" class="headerlink" title="三、顺序栈的基本操作"></a>三、顺序栈的基本操作</h3><pre><code class="language-c">int Init(SqStack &amp;s) {
+    s.elem = new ElemType[MAXSIZE];
+    if (s.elem == NULL) return 0;
+    s.top = 0;
+    return 1;
+}
+
+void Destory(SqStack &amp;s) {
+    delete []s.elem;
+}
+
+void Clear(SqStack &amp;s) {
+    s.top = 0;
+}
+
+int Empty(SqStack s) {
+    return s.top == 0;
+}
+
+int Length(SqStack s) {
+    return s.top;
+}
+
+ElemType GetTop(SqStack s) {
+    return s.elem[s.top - 1];
+}
+
+void Traverse(SqStack s) {
+    for (int i = 0; i &lt; s.top; i++)
+        visit(s.elem[i]);
+}
+
+int Push(SqStack &amp;s, ElemType e) {
+    if (s.top == MAXSIZE) return 0;
+    s.elem[s.top++] = e;
+    return 1;
+}
+
+int Pop(SqStack &amp;s, ElemType &amp;e) {
+    if (s.top == 0) return 0;
+    e = s.elem[--s.top];
+    return 1;
+}
+
+ElemType Pop(SqStack &amp;s) {
+    return s.elem[--s.top];
+}
+</code></pre>
+<h3 id="四、顺序栈的特点"><a href="#四、顺序栈的特点" class="headerlink" title="四、顺序栈的特点"></a>四、顺序栈的特点</h3><ul>
+<li>优点：结构简单、访问栈顶效率高</li>
+<li>缺点：容量固定，容易发生上溢</li>
+<li>入栈、出栈、取栈顶的时间复杂度均为 <code>O(1)</code></li>
+</ul>
+<div style="background-color: #FFE6E6; padding: 15px; border-left: 4px solid #FF4444; margin: 20px 0;">
+<b>注意：</b>顺序栈需要防止两类错误：栈满时继续入栈会发生上溢，空栈时继续出栈会发生下溢。
+</div>
+
+<hr>
+<h2 id="第三节-链栈"><a href="#第三节-链栈" class="headerlink" title="第三节 链栈"></a>第三节 链栈</h2><h3 id="一、链栈的存储思想"><a href="#一、链栈的存储思想" class="headerlink" title="一、链栈的存储思想"></a>一、链栈的存储思想</h3><p>链栈一般用<strong>无头结点的单链表</strong>实现。</p>
+<ul>
+<li>单链表首结点指针就是栈顶指针</li>
+<li>尾结点可以看作栈底结点</li>
+<li>空栈时指针为 <code>NULL</code></li>
+</ul>
+<p>它的核心思想是：每次都在链表头部插入和删除结点，因此天然符合栈“只在一端操作”的特点。</p>
+<h3 id="二、链栈类型定义"><a href="#二、链栈类型定义" class="headerlink" title="二、链栈类型定义"></a>二、链栈类型定义</h3><pre><code class="language-c">typedef struct ENode {
+    ElemType data;
+    struct ENode *next;
+} StackNode, *LinkStack;
+</code></pre>
+<h3 id="三、链栈的基本操作"><a href="#三、链栈的基本操作" class="headerlink" title="三、链栈的基本操作"></a>三、链栈的基本操作</h3><pre><code class="language-c">void Init(LinkStack &amp;s) {
+    s = NULL;
+}
+
+void Destory(LinkStack &amp;s) {
+    LinkStack p;
+    while (s != NULL) {
+        p = s-&gt;next;
+        delete s;
+        s = p;
+    }
+}
+
+void Clear(LinkStack &amp;s) {
+    Destory(s);
+}
+
+int Empty(LinkStack s) {
+    return s == NULL;
+}
+
+int Length(LinkStack s) {
+    int k = 0;
+    while (s != NULL) {
+        k++;
+        s = s-&gt;next;
+    }
+    return k;
+}
+
+ElemType GetTop(LinkStack s) {
+    return s-&gt;data;
+}
+
+void Traverse(LinkStack s) {
+    while (s != NULL) {
+        visit(s);
+        s = s-&gt;next;
+    }
+}
+
+int Push(LinkStack &amp;s, ElemType e) {
+    LinkStack t = new StackNode;
+    t-&gt;data = e;
+    t-&gt;next = s;
+    s = t;
+    return 1;
+}
+
+int Pop(LinkStack &amp;s, ElemType &amp;e) {
+    LinkStack p = s;
+    if (s == NULL) return 0;
+    e = s-&gt;data;
+    s = s-&gt;next;
+    delete p;
+    return 1;
+}
+
+ElemType Pop(LinkStack &amp;s) {
+    LinkStack p = s;
+    ElemType e = s-&gt;data;
+    s = s-&gt;next;
+    delete p;
+    return e;
+}
+</code></pre>
+<h3 id="四、链栈的特点"><a href="#四、链栈的特点" class="headerlink" title="四、链栈的特点"></a>四、链栈的特点</h3><ul>
+<li>优点：不需要预先固定容量，不容易上溢</li>
+<li>缺点：每个结点要额外存储指针域</li>
+<li>入栈、出栈时间复杂度仍为 <code>O(1)</code></li>
+<li>求长度需要遍历，时间复杂度为 <code>O(n)</code></li>
+</ul>
+<p>顺序栈和链栈的主要区别不在逻辑结构，而在存储方式。</p>
+<hr>
+<h2 id="第四节-栈的典型应用"><a href="#第四节-栈的典型应用" class="headerlink" title="第四节 栈的典型应用"></a>第四节 栈的典型应用</h2><h3 id="一、数制转换"><a href="#一、数制转换" class="headerlink" title="一、数制转换"></a>一、数制转换</h3><p>十进制正整数转换为八进制整数时，可以不断对 8 取余。</p>
+<ul>
+<li>第一次得到的是最低位</li>
+<li>最后一次得到的是最高位</li>
+</ul>
+<p>这和我们输出数字时需要的顺序正好相反，因此最适合借助栈“逆序输出”。</p>
+<pre><code class="language-c">void conversion(int n) {
+    Stack s;
+    int e;
+    Init(s);
+    while (n) {
+        Push(s, n % 8);
+        n /= 8;
+    }
+    while (!Empty(s)) {
+        Pop(s, e);
+        cout &lt;&lt; e;
+    }
+}
+</code></pre>
+<div style="background-color: #E8F5E9; padding: 15px; border-left: 4px solid #4CAF50; margin: 20px 0;">
+<b>核心思想：</b>除基取余得到的是从低位到高位的序列，压入栈后再依次弹出，就得到从高位到低位的正确表示。
+</div>
+
+<h3 id="二、递归与栈"><a href="#二、递归与栈" class="headerlink" title="二、递归与栈"></a>二、递归与栈</h3><p>递归在数据结构中非常常见，主要体现在三个方面：</p>
+<h4 id="1-定义是递归的"><a href="#1-定义是递归的" class="headerlink" title="1. 定义是递归的"></a>1. 定义是递归的</h4><p>例如：</p>
+<ul>
+<li>阶乘函数</li>
+<li>斐波那契数列</li>
+<li>后续会学到的树等结构定义</li>
+</ul>
+<h4 id="2-数据结构本身是递归的"><a href="#2-数据结构本身是递归的" class="headerlink" title="2. 数据结构本身是递归的"></a>2. 数据结构本身是递归的</h4><p>例如单链表结点定义：</p>
+<pre><code class="language-c">typedef struct ENode {
+    ElemType data;
+    struct ENode *next;
+} LNode, *LinkList;
+</code></pre>
+<p>结点中包含“指向同类结点的指针”，这本身就是一种递归定义。</p>
+<h4 id="3-问题的求解过程是递归的"><a href="#3-问题的求解过程是递归的" class="headerlink" title="3. 问题的求解过程是递归的"></a>3. 问题的求解过程是递归的</h4><p>例如：</p>
+<ul>
+<li>汉诺塔问题</li>
+<li>八皇后问题</li>
+<li>迷宫问题</li>
+</ul>
+<h3 id="三、函数调用中的栈"><a href="#三、函数调用中的栈" class="headerlink" title="三、函数调用中的栈"></a>三、函数调用中的栈</h3><p>函数调用也依赖栈来完成。</p>
+<pre><code class="language-c">void main() {
+    int a;
+    a = add(3, 4);
+    printf(&quot;%d&quot;, a);
+}
+
+int add(int x, int y) {
+    int t;
+    t = x + y;
+    return t;
+}
+</code></pre>
+<p>在调用过程中，栈大致完成如下工作：</p>
+<ol>
+<li>实参 <code>3</code> 和 <code>4</code> 压栈，返回地址压栈，转入 <code>add</code> 执行</li>
+<li>为局部变量 <code>t</code> 分配栈空间</li>
+<li>保存返回值，释放局部变量空间，返回地址出栈</li>
+<li>回到主函数后，将返回值赋给变量 <code>a</code></li>
+</ol>
+<p>因此，递归函数之所以能一层层调用自己，本质上也依赖系统栈保存现场信息。</p>
+<h3 id="四、递归与非递归的比较"><a href="#四、递归与非递归的比较" class="headerlink" title="四、递归与非递归的比较"></a>四、递归与非递归的比较</h3><ul>
+<li>有些递归算法可以借助栈改写成非递归算法</li>
+<li>时间复杂度上，递归算法一般等于对应的非递归算法</li>
+<li>空间复杂度上，递归算法通常大于非递归算法，因为需要额外调用栈空间</li>
+</ul>
+<hr>
+<h2 id="第五节-队列"><a href="#第五节-队列" class="headerlink" title="第五节 队列"></a>第五节 队列</h2><h3 id="一、队列的定义"><a href="#一、队列的定义" class="headerlink" title="一、队列的定义"></a>一、队列的定义</h3><p>队列（queue）是限定仅在一端进行插入、在另一端进行删除的线性表。</p>
+<ul>
+<li><strong>队头（front）</strong>：允许删除的一端</li>
+<li><strong>队尾（rear）</strong>：允许插入的一端</li>
+<li><strong>操作特点</strong>：先进先出（FIFO, First In First Out）</li>
+<li><strong>插入操作</strong>：入队（EnQueue）</li>
+<li><strong>删除操作</strong>：出队（DeQueue）</li>
+</ul>
+<div style="background-color: #FFF2CC; padding: 15px; border-left: 4px solid #FFB800; margin: 20px 0;">
+<b>队列和栈的区别在于：栈在同一端插删，队列在两端分工操作。</b>
+</div>
+
+<h3 id="二、队列的应用场景"><a href="#二、队列的应用场景" class="headerlink" title="二、队列的应用场景"></a>二、队列的应用场景</h3><p>队列适用于“先来的先处理”的问题，例如：</p>
+<ul>
+<li>舞伴问题（男女双队列）</li>
+<li>I&#x2F;O 缓冲区</li>
+<li>打印队列</li>
+<li>广度优先遍历</li>
+<li>各类排队调度系统</li>
+</ul>
+<hr>
+<h2 id="第六节-顺序队列与循环队列"><a href="#第六节-顺序队列与循环队列" class="headerlink" title="第六节 顺序队列与循环队列"></a>第六节 顺序队列与循环队列</h2><h3 id="一、顺序队列的基本思想"><a href="#一、顺序队列的基本思想" class="headerlink" title="一、顺序队列的基本思想"></a>一、顺序队列的基本思想</h3><p>对于 C&#x2F;C++，可用数组表示队列空间，用 <code>front</code> 和 <code>rear</code> 记录位置。</p>
+<ul>
+<li>初始空队列：<code>front = rear = 0</code></li>
+<li>删除队头元素时：<code>front++</code></li>
+<li>新元素入队时：<code>rear++</code></li>
+</ul>
+<p>其中：</p>
+<ul>
+<li><code>front</code> 指向队头元素位置</li>
+<li><code>rear</code> 指向队尾元素的下一个位置</li>
+</ul>
+<h3 id="二、顺序队列的假溢出问题"><a href="#二、顺序队列的假溢出问题" class="headerlink" title="二、顺序队列的假溢出问题"></a>二、顺序队列的假溢出问题</h3><p>设想如下过程：</p>
+<ol>
+<li>初始为空队列</li>
+<li><code>a1</code>、<code>a2</code>、<code>a3</code>、<code>a4</code> 入队</li>
+<li><code>a1</code>、<code>a2</code> 出队</li>
+<li>再让 <code>a5</code>、<code>a6</code> 入队</li>
+</ol>
+<p>虽然数组前面已经腾出了空间，但如果只是简单地让 <code>rear</code> 继续向后移动，就会出现“数组尾部没有位置”的现象。这种情况称为：</p>
+<div style="background-color: #FFE6E6; padding: 15px; border-left: 4px solid #FF4444; margin: 20px 0; text-align: center;">
+<b>假溢出</b>
+</div>
+
+<p>它不是真正没有空间，而是没有重复利用已经释放出的空间。</p>
+<h3 id="三、循环队列"><a href="#三、循环队列" class="headerlink" title="三、循环队列"></a>三、循环队列</h3><p>解决假溢出最常见的方法就是循环队列。可以把数组想象成钟表盘，走到末尾后重新回到开头。</p>
+<h4 id="1-入队与出队"><a href="#1-入队与出队" class="headerlink" title="1. 入队与出队"></a>1. 入队与出队</h4><pre><code class="language-c">rear = (rear + 1) % MAXSIZE;
+front = (front + 1) % MAXSIZE;
+</code></pre>
+<h4 id="2-判空与判满"><a href="#2-判空与判满" class="headerlink" title="2. 判空与判满"></a>2. 判空与判满</h4><p>循环队列中：</p>
+<ul>
+<li>队空：<code>front == rear</code></li>
+<li>队满：<code>(rear + 1) % MAXSIZE == front</code></li>
+</ul>
+<p>这意味着如果数组大小为 <code>MAXSIZE</code>，通常最多只存放 <code>MAXSIZE - 1</code> 个元素。</p>
+<h3 id="四、循环队列类型定义与操作"><a href="#四、循环队列类型定义与操作" class="headerlink" title="四、循环队列类型定义与操作"></a>四、循环队列类型定义与操作</h3><pre><code class="language-c">#define MAXSIZE 100
+
+typedef struct {
+    ElemType *elem;
+    int front;
+    int rear;
+} SqQueue;
+
+int Init(SqQueue &amp;q) {
+    q.elem = new ElemType[MAXSIZE];
+    if (q.elem == NULL)
+        return 0;
+    q.front = q.rear = 0;
+    return 1;
+}
+
+int Length(SqQueue q) {
+    return (q.rear - q.front + MAXSIZE) % MAXSIZE;
+}
+
+int Empty(SqQueue q) {
+    return q.rear == q.front;
+}
+
+int Full(SqQueue q) {
+    return (q.rear + 1) % MAXSIZE == q.front;
+}
+
+ElemType GetHead(SqQueue q) {
+    return q.elem[q.front];
+}
+
+ElemType GetTail(SqQueue q) {
+    return q.elem[(q.rear - 1 + MAXSIZE) % MAXSIZE];
+}
+
+int EnQueue(SqQueue &amp;q, ElemType e) {
+    if (Full(q))
+        return 0;
+    q.elem[q.rear] = e;
+    q.rear = (q.rear + 1) % MAXSIZE;
+    return 1;
+}
+
+int DeQueue(SqQueue &amp;q, ElemType &amp;e) {
+    if (Empty(q))
+        return 0;
+    e = q.elem[q.front];
+    q.front = (q.front + 1) % MAXSIZE;
+    return 1;
+}
+</code></pre>
+<h3 id="五、循环队列的特点"><a href="#五、循环队列的特点" class="headerlink" title="五、循环队列的特点"></a>五、循环队列的特点</h3><ul>
+<li>入队、出队、取队头时间复杂度均为 <code>O(1)</code></li>
+<li>能有效避免普通顺序队列的假溢出问题</li>
+<li>但常规写法会浪费一个存储单元，用于区分“空”和“满”</li>
+</ul>
+<hr>
+<h2 id="第七节-链队列"><a href="#第七节-链队列" class="headerlink" title="第七节 链队列"></a>第七节 链队列</h2><h3 id="一、链队列的存储思想"><a href="#一、链队列的存储思想" class="headerlink" title="一、链队列的存储思想"></a>一、链队列的存储思想</h3><p>链队列通常使用带头结点的单链表实现，并同时设置队头指针与队尾指针。</p>
+<ul>
+<li><code>front</code> 指向头结点</li>
+<li><code>rear</code> 指向队尾结点</li>
+<li>空队列时 <code>front == rear</code></li>
+</ul>
+<h3 id="二、链队列类型定义"><a href="#二、链队列类型定义" class="headerlink" title="二、链队列类型定义"></a>二、链队列类型定义</h3><pre><code class="language-c">typedef struct ENode {
+    ElemType data;
+    struct ENode *next;
+} LNode, *LinkList;
+
+typedef struct {
+    LinkList front;
+    LinkList rear;
+} LinkQueue;
+</code></pre>
+<h3 id="三、链队列的基本操作"><a href="#三、链队列的基本操作" class="headerlink" title="三、链队列的基本操作"></a>三、链队列的基本操作</h3><pre><code class="language-c">int Init(LinkQueue &amp;q) {
+    q.front = q.rear = new LNode;
+    if (q.front == NULL)
+        return 0;
+    q.front-&gt;next = NULL;
+    return 1;
+}
+
+int Length(LinkQueue q) {
+    LinkList p = q.front;
+    int k = 0;
+    while ((p = p-&gt;next) != NULL)
+        k++;
+    return k;
+}
+
+int Empty(LinkQueue q) {
+    return q.rear == q.front;
+}
+
+ElemType GetHead(LinkQueue q) {
+    return q.front-&gt;next-&gt;data;
+}
+
+ElemType GetTail(LinkQueue q) {
+    return q.rear-&gt;data;
+}
+
+int EnQueue(LinkQueue &amp;q, ElemType e) {
+    LinkList s = new LNode;
+    if (s == NULL)
+        return 0;
+    s-&gt;data = e;
+    s-&gt;next = NULL;
+    q.rear-&gt;next = s;
+    q.rear = s;
+    return 1;
+}
+
+int DeQueue(LinkQueue &amp;q, ElemType &amp;e) {
+    LinkList p;
+    if (Empty(q))
+        return 0;
+    p = q.front-&gt;next;
+    e = p-&gt;data;
+    q.front-&gt;next = p-&gt;next;
+    if (p-&gt;next == NULL)
+        q.rear = q.front;
+    delete p;
+    return 1;
+}
+</code></pre>
+<h3 id="四、链队列的特点"><a href="#四、链队列的特点" class="headerlink" title="四、链队列的特点"></a>四、链队列的特点</h3><ul>
+<li>不需要预先分配固定长度空间</li>
+<li>不存在顺序队列中的假溢出问题</li>
+<li>入队在尾部进行，出队在头部进行，效率都为 <code>O(1)</code></li>
+<li>需要额外指针域，存储开销略大于顺序结构</li>
+</ul>
+<div style="background-color: #FFE6E6; padding: 15px; border-left: 4px solid #FF4444; margin: 20px 0;">
+<b>课件草稿中的链队列入队代码里出现了 `q.rear = (q.rear + 1) % MAXSIZE;` 这一句，这属于顺序循环队列写法，放在链队列中是不合适的。链队列应当直接令 `q.rear = s;`。</b>
+</div>
+
+<hr>
+<h2 id="第八节-栈与队列的对比"><a href="#第八节-栈与队列的对比" class="headerlink" title="第八节 栈与队列的对比"></a>第八节 栈与队列的对比</h2><table>
+<thead>
+<tr>
+<th align="center">项目</th>
+<th align="left">栈</th>
+<th align="left">队列</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">逻辑结构</td>
+<td align="left">操作受限的线性表</td>
+<td align="left">操作受限的线性表</td>
+</tr>
+<tr>
+<td align="center">插入位置</td>
+<td align="left">只能在栈顶</td>
+<td align="left">只能在队尾</td>
+</tr>
+<tr>
+<td align="center">删除位置</td>
+<td align="left">只能在栈顶</td>
+<td align="left">只能在队头</td>
+</tr>
+<tr>
+<td align="center">操作规律</td>
+<td align="left">后进先出 LIFO</td>
+<td align="left">先进先出 FIFO</td>
+</tr>
+<tr>
+<td align="center">典型应用</td>
+<td align="left">递归、表达式、括号匹配</td>
+<td align="left">排队调度、缓冲、层序遍历</td>
+</tr>
+</tbody></table>
+<p>理解这张表，基本就抓住了本章的核心。</p>
+<hr>
+<h2 id="第九节-课件示例整理"><a href="#第九节-课件示例整理" class="headerlink" title="第九节 课件示例整理"></a>第九节 课件示例整理</h2><p>这一节更适合初学者阅读。默认你已经学过基础程序设计，但还不太熟悉：</p>
+<ul>
+<li><code>struct</code> 结构体</li>
+<li>指针 <code>*</code></li>
+<li>引用 <code>&amp;</code></li>
+<li>动态内存 <code>new/delete</code>、<code>malloc/free</code></li>
+<li>链表里“结点连起来”的思路</li>
+</ul>
+<h3 id="示例1：链栈基本操作（3-1-cpp）"><a href="#示例1：链栈基本操作（3-1-cpp）" class="headerlink" title="示例1：链栈基本操作（3-1.cpp）"></a>示例1：链栈基本操作（<code>3-1.cpp</code>）</h3><p>这个程序演示了链栈的初始化、入栈、遍历、出栈、取栈顶、清空等操作。它是理解”链栈到底是什么”最重要的一份代码。</p>
+<pre><code class="language-cpp">#include &quot;iostream.h&quot;
+
+typedef struct ENode {
+    char data;
+    struct ENode *next;
+} Node, *Stack;
+
+void Init(Stack &amp;s) {
+    s = NULL;
+}
+
+void Destory(Stack &amp;s) {
+    Stack p;
+    while (s != NULL) {
+        p = s-&gt;next;
+        delete s;
+        s = p;
+    }
+}
+
+void Clear(Stack &amp;s) {
+    Destory(s);
+}
+
+int Empty(Stack s) {
+    return s == NULL;
+}
+
+int Length(Stack s) {
+    int k = 0;
+    while (s != NULL) {
+        k++;
+        s = s-&gt;next;
+    }
+    return k;
+}
+
+char GetTop(Stack s) {
+    return s-&gt;data;
+}
+
+void Traverse(Stack s) {
+    while (s != NULL) {
+        cout &lt;&lt; s-&gt;data &lt;&lt; &quot;  &quot;;
+        s = s-&gt;next;
+    }
+}
+
+void Push(Stack &amp;s, char e) {
+    Stack t = new Node;
+    t-&gt;data = e;
+    t-&gt;next = s;
+    s = t;
+}
+
+int Pop(Stack &amp;s, char &amp;e) {
+    Stack p = s;
+    if (s == NULL) return 0;
+    e = s-&gt;data;
+    s = s-&gt;next;
+    delete p;
+    return 1;
+}
+
+void main() {
+    int i = 0;
+    char c;
+    Stack s;
+    Init(s);
+    Clear(s);
+    for (i = 0; i &lt; 5; i++) {
+        cin &gt;&gt; c;
+        Push(s, c);
+    }
+    Traverse(s);
+    cout &lt;&lt; &quot;弹出一个元素&quot; &lt;&lt; endl;
+    Pop(s, c);
+    cout &lt;&lt; c;
+    cout &lt;&lt; &quot;再次遍历堆栈&quot; &lt;&lt; endl;
+    Traverse(s);
+    GetTop(s);
+    Clear(s);
+}
+</code></pre>
+<p>先不要急着一行行硬读，先把这段程序当成“用单链表模拟一摞盘子”。</p>
+<h4 id="1-这段程序到底在做什么"><a href="#1-这段程序到底在做什么" class="headerlink" title="1. 这段程序到底在做什么"></a>1. 这段程序到底在做什么</h4><ul>
+<li>每输入一个字符，就把它压到栈顶</li>
+<li>遍历时，输出的是“从栈顶到栈底”的顺序</li>
+<li>弹出一个元素后，再次遍历，就能看到栈内容发生了变化</li>
+</ul>
+<p>如果输入的是：<code>a b c d e</code></p>
+<p>那么压栈过程是：</p>
+<ul>
+<li>先放入 <code>a</code></li>
+<li>再放入 <code>b</code>，<code>b</code> 在上面</li>
+<li>再放入 <code>c</code>，<code>c</code> 在更上面</li>
+<li>最后栈顶是 <code>e</code></li>
+</ul>
+<p>所以遍历时看到的大概率是：<code>e d c b a</code></p>
+<p>这正是栈“后进先出”的体现。</p>
+<h4 id="2-先认识几个你必须懂的语法"><a href="#2-先认识几个你必须懂的语法" class="headerlink" title="2. 先认识几个你必须懂的语法"></a>2. 先认识几个你必须懂的语法</h4><pre><code class="language-cpp">typedef struct ENode
+{
+    char data;
+    struct ENode *next;
+} Node, *Stack;
+</code></pre>
+<p>这几行初学者最容易懵，可以拆开理解：</p>
+<ul>
+<li><code>Node</code> 是一种结点类型</li>
+<li>每个结点里有两部分：<ul>
+<li><code>data</code>：真正存的数据，这里是一个字符</li>
+<li><code>next</code>：指向下一个结点的指针</li>
+</ul>
+</li>
+<li><code>Stack</code> 其实不是“整个栈”，而是“指向栈顶结点的指针类型&#96;</li>
+</ul>
+<p>也就是说：</p>
+<ul>
+<li><code>Node</code> 像一个小盒子</li>
+<li><code>next</code> 像盒子上贴的一张纸条，写着“下一个盒子在哪”</li>
+<li><code>Stack s;</code> 的 <code>s</code> 更像“当前最上面那个盒子的地址”</li>
+</ul>
+<p>再看函数参数：</p>
+<ul>
+<li><code>Stack s</code>：传进去的是当前指针的值，函数里改它，不会影响原来的栈顶</li>
+<li><code>Stack &amp;s</code>：这里的 <code>&amp;</code> 表示引用，函数里改 <code>s</code>，外面的栈顶也会一起变</li>
+</ul>
+<p>所以像 <code>Push</code>、<code>Pop</code> 这种会改变栈顶的函数，一定要写成 <code>Stack &amp;s</code>。</p>
+<h4 id="3-每个函数各自负责什么"><a href="#3-每个函数各自负责什么" class="headerlink" title="3. 每个函数各自负责什么"></a>3. 每个函数各自负责什么</h4><ul>
+<li><code>Init(s)</code>：把栈置空，让 <code>s = NULL</code></li>
+<li><code>Empty(s)</code>：判断栈是不是空</li>
+<li><code>Length(s)</code>：顺着链表往下数，一共几个结点</li>
+<li><code>GetTop(s)</code>：读取栈顶元素，也就是 <code>s-&gt;data</code></li>
+<li><code>Traverse(s)</code>：从栈顶一路往下输出所有元素</li>
+<li><code>Push(s, e)</code>：把新元素压到栈顶</li>
+<li><code>Pop(s, e)</code>：把栈顶元素弹出，并存到 <code>e</code> 里</li>
+<li><code>Clear(s)</code> &#x2F; <code>Destory(s)</code>：把所有结点释放掉</li>
+</ul>
+<h4 id="4-Push-为什么就是入栈"><a href="#4-Push-为什么就是入栈" class="headerlink" title="4. Push 为什么就是入栈"></a>4. <code>Push</code> 为什么就是入栈</h4><p>先看代码：</p>
+<pre><code class="language-cpp">void Push(Stack &amp;s, char e)
+{
+    Stack t = new Node;
+    t-&gt;data = e;
+    t-&gt;next = s;
+    s = t;
+}
+</code></pre>
+<p>把这 4 行翻成白话：</p>
+<ol>
+<li><code>new Node</code>：申请一个新结点，名字叫 <code>t</code></li>
+<li><code>t-&gt;data = e</code>：把要入栈的字符放进这个新结点</li>
+<li><code>t-&gt;next = s</code>：让新结点指向“原来的栈顶”</li>
+<li><code>s = t</code>：把栈顶改成这个新结点</li>
+</ol>
+<p>假设原来栈是：</p>
+<pre><code class="language-text">s -&gt; [b] -&gt; [a] -&gt; NULL
+</code></pre>
+<p>现在执行 <code>Push(s, &#39;c&#39;)</code> 后：</p>
+<pre><code class="language-text">s -&gt; [c] -&gt; [b] -&gt; [a] -&gt; NULL
+</code></pre>
+<p>所以新元素永远插在最前面，这就叫“头插法”。链栈正是利用头插法来实现入栈。</p>
+<h4 id="5-Pop-为什么就是出栈"><a href="#5-Pop-为什么就是出栈" class="headerlink" title="5. Pop 为什么就是出栈"></a>5. <code>Pop</code> 为什么就是出栈</h4><pre><code class="language-cpp">int Pop(Stack &amp;s, char &amp;e)
+{
+    Stack p = s;
+    if(s == NULL) return 0;
+    e = s-&gt;data;
+    s = s-&gt;next;
+    delete p;
+    return 1;
+}
+</code></pre>
+<p>翻成白话：</p>
+<ol>
+<li><code>p = s</code>：先记住“原来的栈顶是谁”</li>
+<li>如果栈空，就失败返回 <code>0</code></li>
+<li><code>e = s-&gt;data</code>：把栈顶元素取出来</li>
+<li><code>s = s-&gt;next</code>：让栈顶往下移一层</li>
+<li><code>delete p</code>：释放刚才那个旧栈顶结点</li>
+</ol>
+<p>假设原来是：</p>
+<pre><code class="language-text">s -&gt; [c] -&gt; [b] -&gt; [a] -&gt; NULL
+</code></pre>
+<p>执行一次 <code>Pop</code> 后：</p>
+<ul>
+<li>取出的元素是 <code>c</code></li>
+<li>栈变成：</li>
+</ul>
+<pre><code class="language-text">s -&gt; [b] -&gt; [a] -&gt; NULL
+</code></pre>
+<p>这就是“后进先出”。最后压进去的 <code>c</code>，最先出来。</p>
+<h4 id="6-主函数在干什么"><a href="#6-主函数在干什么" class="headerlink" title="6. 主函数在干什么"></a>6. 主函数在干什么</h4><pre><code class="language-cpp">for(i=0;i&lt;5;i++)
+{
+    cin&gt;&gt;c;
+    Push(s,c);
+}
+Traverse(s);
+cout&lt;&lt;&quot;弹出一个元素&quot;&lt;&lt;endl;
+Pop(s,c);
+cout&lt;&lt;c;
+cout&lt;&lt;&quot;再次遍历堆栈&quot;&lt;&lt;endl;
+Traverse(s);
+</code></pre>
+<p>这段流程可以理解成：</p>
+<ul>
+<li>连续输入 5 个字符</li>
+<li>每输入一个就压栈</li>
+<li>全部输入完后输出整个栈</li>
+<li>再弹出一个栈顶元素并输出它</li>
+<li>然后再次输出现在的栈</li>
+</ul>
+<p>如果输入顺序是：<code>a b c d e</code></p>
+<p>那么过程如下：</p>
+<pre><code class="language-text">压入 a: s -&gt; a
+压入 b: s -&gt; b -&gt; a
+压入 c: s -&gt; c -&gt; b -&gt; a
+压入 d: s -&gt; d -&gt; c -&gt; b -&gt; a
+压入 e: s -&gt; e -&gt; d -&gt; c -&gt; b -&gt; a
+</code></pre>
+<p>第一次 <code>Traverse</code> 输出：</p>
+<pre><code class="language-text">e d c b a
+</code></pre>
+<p>执行 <code>Pop</code> 后：</p>
+<ul>
+<li>弹出的元素是 <code>e</code></li>
+<li>栈变成 <code>d c b a</code></li>
+</ul>
+<p>第二次 <code>Traverse</code> 输出：</p>
+<pre><code class="language-text">d c b a
+</code></pre>
+<h4 id="7-初学者最容易卡住的点"><a href="#7-初学者最容易卡住的点" class="headerlink" title="7. 初学者最容易卡住的点"></a>7. 初学者最容易卡住的点</h4><ul>
+<li><code>s</code> 不是一串完整数据，它只是“指向栈顶的指针”</li>
+<li><code>s-&gt;data</code> 的意思是“取 s 所指向结点里的 data”</li>
+<li><code>new Node</code> 是“申请一个新结点空间”</li>
+<li><code>delete p</code> 是“把不用的结点还给系统”</li>
+<li>链栈的遍历方向是从栈顶往栈底，不是从输入顺序往后看</li>
+</ul>
+<h4 id="8-这个示例你至少要记住什么"><a href="#8-这个示例你至少要记住什么" class="headerlink" title="8. 这个示例你至少要记住什么"></a>8. 这个示例你至少要记住什么</h4><ul>
+<li>链栈本质上就是“在单链表表头做插入和删除”</li>
+<li>入栈就是头插法</li>
+<li>出栈就是删除首结点</li>
+<li>栈顶永远是链表第一个结点</li>
+</ul>
+<h3 id="示例2：循环顺序队列基本操作（3-2-cpp）"><a href="#示例2：循环顺序队列基本操作（3-2-cpp）" class="headerlink" title="示例2：循环顺序队列基本操作（3-2.cpp）"></a>示例2：循环顺序队列基本操作（<code>3-2.cpp</code>）</h3><p>这个程序演示了循环队列的初始化、入队、取队头、取队尾和求长度。它最大的学习重点不是代码长相，而是 <code>front</code>、<code>rear</code> 和 <code>%</code> 取模到底代表什么。</p>
+<pre><code class="language-cpp">#define MAXSIZE 100
+#include &quot;iostream.h&quot;
+
+typedef struct {
+    char *elem;
+    int front;
+    int rear;
+} SqQueue;
+
+int Init(SqQueue &amp;q) {
+    q.elem = new char[MAXSIZE];
+    if (q.elem == NULL)
+        return 0;
+    q.front = q.rear = 0;
+    return 1;
+}
+
+int Length(SqQueue q) {
+    return (q.rear - q.front + MAXSIZE) % MAXSIZE;
+}
+
+int Empty(SqQueue q) {
+    return q.rear == q.front;
+}
+
+int Full(SqQueue q) {
+    return (q.rear + 1) % MAXSIZE == q.front;
+}
+
+char GetHead(SqQueue q) {
+    return q.elem[q.front];
+}
+
+char GetTail(SqQueue q) {
+    return q.elem[(q.rear - 1 + MAXSIZE) % MAXSIZE];
+}
+
+int EnQueue(SqQueue &amp;q, char e) {
+    if (Full(q))
+        return 0;
+    q.elem[q.rear] = e;
+    q.rear = (q.rear + 1) % MAXSIZE;
+    return 1;
+}
+
+int DeQueue(SqQueue &amp;q, char &amp;e) {
+    if (Empty(q))
+        return 0;
+    e = q.elem[q.front];
+    q.front = (q.front + 1) % MAXSIZE;
+    return 1;
+}
+
+void main() {
+    SqQueue q;
+    int i;
+    char c;
+    Init(q);
+    for (i = 0; i &lt; 5; i++) {
+        cin &gt;&gt; c;
+        EnQueue(q, c);
+    }
+    c = GetHead(q);
+    cout &lt;&lt; c &lt;&lt; endl;
+    c = GetTail(q);
+    cout &lt;&lt; c &lt;&lt; endl;
+    cout &lt;&lt; Length(q);
+}
+</code></pre>
+<h4 id="1-先把队列想成“排队”"><a href="#1-先把队列想成“排队”" class="headerlink" title="1. 先把队列想成“排队”"></a>1. 先把队列想成“排队”</h4><p>队列最像生活里的排队：</p>
+<ul>
+<li>新来的人只能排到队尾</li>
+<li>已经在最前面的人才能先离开</li>
+</ul>
+<p>所以：</p>
+<ul>
+<li><code>front</code>：队头，在最前面，谁该出队就看它</li>
+<li><code>rear</code>：队尾的后一个位置，新元素要放到这里</li>
+</ul>
+<p>注意这里很关键：</p>
+<div style="background-color: #FFF2CC; padding: 15px; border-left: 4px solid #FFB800; margin: 20px 0;">
+<b>`rear` 不是最后一个元素本身，而是“下一个可以放新元素的位置”。</b>
+</div>
+
+<h4 id="2-先认识结构体长什么样"><a href="#2-先认识结构体长什么样" class="headerlink" title="2. 先认识结构体长什么样"></a>2. 先认识结构体长什么样</h4><pre><code class="language-cpp">typedef struct 
+{
+    char *elem;
+    int front;
+    int rear;
+} SqQueue;
+</code></pre>
+<p>这里可以理解成：</p>
+<ul>
+<li><code>elem</code>：一整块数组空间，用来存队列元素</li>
+<li><code>front</code>：队头下标</li>
+<li><code>rear</code>：队尾后一个位置的下标</li>
+</ul>
+<h4 id="3-初始化为什么是-front-rear-0"><a href="#3-初始化为什么是-front-rear-0" class="headerlink" title="3. 初始化为什么是 front = rear = 0"></a>3. 初始化为什么是 <code>front = rear = 0</code></h4><pre><code class="language-cpp">q.front = q.rear = 0;
+</code></pre>
+<p>这表示：</p>
+<ul>
+<li>队列刚开始一个元素都没有</li>
+<li>队头和队尾后一个位置重合</li>
+</ul>
+<p>所以空队列判定就是：</p>
+<pre><code class="language-cpp">q.rear == q.front
+</code></pre>
+<h4 id="4-入队到底做了哪两步"><a href="#4-入队到底做了哪两步" class="headerlink" title="4. 入队到底做了哪两步"></a>4. 入队到底做了哪两步</h4><pre><code class="language-cpp">q.elem[q.rear] = e;
+q.rear = (q.rear + 1) % MAXSIZE;
+</code></pre>
+<p>白话翻译：</p>
+<ol>
+<li>把新元素放到 <code>rear</code> 指向的位置</li>
+<li><code>rear</code> 向后移动一格</li>
+</ol>
+<p>如果 <code>rear</code> 已经走到数组最后一个位置，下一步就要回到开头。所以才需要：</p>
+<pre><code class="language-cpp">(q.rear + 1) % MAXSIZE
+</code></pre>
+<p>这里的 <code>%</code> 可以简单理解成“绕一圈”。</p>
+<p>例如数组大小 <code>MAXSIZE = 100</code>：</p>
+<ul>
+<li>如果 <code>rear = 8</code>，下一格是 <code>9</code></li>
+<li>如果 <code>rear = 99</code>，下一格就不是 <code>100</code>，而是 <code>0</code></li>
+</ul>
+<h4 id="5-出队做了哪两步"><a href="#5-出队做了哪两步" class="headerlink" title="5. 出队做了哪两步"></a>5. 出队做了哪两步</h4><pre><code class="language-cpp">e = q.elem[q.front];
+q.front = (q.front+1) % MAXSIZE;
+</code></pre>
+<p>白话翻译：</p>
+<ol>
+<li>取出队头元素</li>
+<li>让队头往后走一格</li>
+</ol>
+<p>这很像排队最前面的人离开后，下一位自然补到最前面。</p>
+<h4 id="6-为什么叫“循环队列”"><a href="#6-为什么叫“循环队列”" class="headerlink" title="6. 为什么叫“循环队列”"></a>6. 为什么叫“循环队列”</h4><p>普通顺序队列只会一直往数组后面走，走到最后就算前面空了，也很难继续用，于是会出现“假溢出”。</p>
+<p>循环队列的改进就是：</p>
+<ul>
+<li>走到数组尾部后，再从开头继续用</li>
+<li>这样前面被出队腾出来的位置就能再次使用</li>
+</ul>
+<p>所以它本质上是“首尾相接的数组队列”。</p>
+<h4 id="7-关键函数怎么理解"><a href="#7-关键函数怎么理解" class="headerlink" title="7. 关键函数怎么理解"></a>7. 关键函数怎么理解</h4><ul>
+<li><code>Empty(q)</code>：队空时 <code>front == rear</code></li>
+<li><code>Full(q)</code>：队满时 <code>(rear + 1) % MAXSIZE == front</code></li>
+<li><code>GetHead(q)</code>：取队头元素 <code>q.elem[q.front]</code></li>
+<li><code>GetTail(q)</code>：取队尾元素 <code>q.elem[(q.rear-1+MAXSIZE)%MAXSIZE]</code></li>
+</ul>
+<p>其中 <code>GetTail</code> 最难理解。因为 <code>rear</code> 指向的不是最后一个元素，而是“最后一个元素后面的位置”，所以要先退一格。</p>
+<h4 id="8-用一个小例子手动跑一遍"><a href="#8-用一个小例子手动跑一遍" class="headerlink" title="8. 用一个小例子手动跑一遍"></a>8. 用一个小例子手动跑一遍</h4><p>假设依次入队：<code>a b c d e</code></p>
+<p>初始时：</p>
+<pre><code class="language-text">front = 0, rear = 0
+</code></pre>
+<p>入队 <code>a</code> 后：</p>
+<ul>
+<li><code>a</code> 放在 <code>elem[0]</code></li>
+<li><code>rear</code> 变成 <code>1</code></li>
+</ul>
+<p>入队 <code>b</code> 后：</p>
+<ul>
+<li><code>b</code> 放在 <code>elem[1]</code></li>
+<li><code>rear</code> 变成 <code>2</code></li>
+</ul>
+<p>一直到入队 <code>e</code>：</p>
+<pre><code class="language-text">elem[0]=a, elem[1]=b, elem[2]=c, elem[3]=d, elem[4]=e
+front=0, rear=5
+</code></pre>
+<p>此时：</p>
+<ul>
+<li>队头是 <code>a</code></li>
+<li>队尾是 <code>e</code></li>
+<li>长度是 <code>5</code></li>
+</ul>
+<p>这正对应主函数最后三次输出的内容。</p>
+<h4 id="9-这段代码你至少要记住什么"><a href="#9-这段代码你至少要记住什么" class="headerlink" title="9. 这段代码你至少要记住什么"></a>9. 这段代码你至少要记住什么</h4><ul>
+<li><code>front</code> 看队头，<code>rear</code> 看下一次入队位置</li>
+<li>入队改 <code>rear</code>，出队改 <code>front</code></li>
+<li><code>% MAXSIZE</code> 是为了让数组“转圈使用”</li>
+<li>判满时故意空一个位置，这是教材里最常见的写法</li>
+</ul>
+<h3 id="示例3：链栈的再次出栈与长度验证（3-3-cpp）"><a href="#示例3：链栈的再次出栈与长度验证（3-3-cpp）" class="headerlink" title="示例3：链栈的再次出栈与长度验证（3-3.cpp）"></a>示例3：链栈的再次出栈与长度验证（<code>3-3.cpp</code>）</h3><p>这个程序与示例1结构接近，但增加了多次出栈和最后求长度的过程，更适合观察栈状态变化。你可以把它看成是”链栈练习加强版”。</p>
+<pre><code class="language-cpp">#include &quot;iostream.h&quot;
+
+typedef struct ENode {
+    char data;
+    struct ENode *next;
+} Node, *Stack;
+
+void Init(Stack &amp;s) {
+    s = NULL;
+}
+
+void Destory(Stack &amp;s) {
+    Stack p;
+    while (s != NULL) {
+        p = s-&gt;next;
+        delete s;
+        s = p;
+    }
+}
+
+void Clear(Stack &amp;s) {
+    Destory(s);
+}
+
+int Empty(Stack s) {
+    return s == NULL;
+}
+
+int Length(Stack s) {
+    int k = 0;
+    while (s != NULL) {
+        k++;
+        s = s-&gt;next;
+    }
+    return k;
+}
+
+char GetTop(Stack s) {
+    return s-&gt;data;
+}
+
+void Traverse(Stack s) {
+    while (s != NULL) {
+        cout &lt;&lt; s-&gt;data &lt;&lt; &quot;  &quot;;
+        s = s-&gt;next;
+    }
+}
+
+void Push(Stack &amp;s, char e) {
+    Stack t = new Node;
+    t-&gt;data = e;
+    t-&gt;next = s;
+    s = t;
+}
+
+int Pop(Stack &amp;s, char &amp;e) {
+    Stack p = s;
+    if (s == NULL) return 0;
+    e = s-&gt;data;
+    s = s-&gt;next;
+    delete p;
+    return 1;
+}
+
+void main() {
+    int i = 0;
+    char c;
+    Stack s;
+    Init(s);
+    Clear(s);
+    for (i = 0; i &lt; 5; i++) {
+        cin &gt;&gt; c;
+        Push(s, c);
+    }
+    Traverse(s);
+    cout &lt;&lt; &quot;弹出一个元素&quot; &lt;&lt; endl;
+    Pop(s, c);
+    cout &lt;&lt; c;
+    cout &lt;&lt; &quot;再次遍历堆栈&quot; &lt;&lt; endl;
+    Traverse(s);
+    GetTop(s);
+    Pop(s, c);
+    cout &lt;&lt; endl;
+    cout &lt;&lt; c;
+    cout &lt;&lt; endl;
+    Traverse(s);
+    Clear(s);
+    cout &lt;&lt; endl;
+    cout &lt;&lt; Length(s);
+}
+</code></pre>
+<h4 id="1-这份代码和示例1有什么不同"><a href="#1-这份代码和示例1有什么不同" class="headerlink" title="1. 这份代码和示例1有什么不同"></a>1. 这份代码和示例1有什么不同</h4><p>主体结构和示例1几乎一样，重点差在主函数后半段：</p>
+<ul>
+<li>它不只弹出一次</li>
+<li>它在多次操作后又做了遍历</li>
+<li>它最后清空栈后，又调用 <code>Length(s)</code> 检查长度</li>
+</ul>
+<p>所以这份代码更适合你观察：“每做一次 <code>Pop</code>，栈里到底少了谁”。</p>
+<h4 id="2-建议你只盯住主函数"><a href="#2-建议你只盯住主函数" class="headerlink" title="2. 建议你只盯住主函数"></a>2. 建议你只盯住主函数</h4><pre><code class="language-cpp">Traverse(s);
+Pop(s,c);
+Traverse(s);
+Pop(s,c);
+Traverse(s);
+Clear(s);
+cout&lt;&lt;Length(s);
+</code></pre>
+<p>你可以把它当成下面的实验：</p>
+<ol>
+<li>先看栈当前长什么样</li>
+<li>弹出一次，再看一遍</li>
+<li>再弹出一次，再看一遍</li>
+<li>最后全部清空，看看长度是不是 <code>0</code></li>
+</ol>
+<h4 id="3-还是用-a-b-c-d-e-举例"><a href="#3-还是用-a-b-c-d-e-举例" class="headerlink" title="3. 还是用 a b c d e 举例"></a>3. 还是用 <code>a b c d e</code> 举例</h4><p>全部压栈后：</p>
+<pre><code class="language-text">e d c b a
+</code></pre>
+<p>第一次 <code>Pop</code>：</p>
+<ul>
+<li>弹出 <code>e</code></li>
+<li>栈变成 <code>d c b a</code></li>
+</ul>
+<p>第二次 <code>Pop</code>：</p>
+<ul>
+<li>弹出 <code>d</code></li>
+<li>栈变成 <code>c b a</code></li>
+</ul>
+<p>执行 <code>Clear(s)</code> 后：</p>
+<ul>
+<li>所有结点都会被释放</li>
+<li><code>s</code> 最终变成 <code>NULL</code></li>
+<li><code>Length(s)</code> 结果是 <code>0</code></li>
+</ul>
+<h4 id="4-这份程序主要帮你建立什么感觉"><a href="#4-这份程序主要帮你建立什么感觉" class="headerlink" title="4. 这份程序主要帮你建立什么感觉"></a>4. 这份程序主要帮你建立什么感觉</h4><ul>
+<li>栈不是“静态不变的一组数据”，而是会随 <code>Push</code> 和 <code>Pop</code> 不断变化</li>
+<li><code>Pop</code> 不是只把值拿出来，还会真正删掉最上面的结点</li>
+<li><code>Clear</code> 后，栈就彻底空了，不只是“看起来不输出东西”</li>
+</ul>
+<h4 id="5-这份代码你至少要记住什么"><a href="#5-这份代码你至少要记住什么" class="headerlink" title="5. 这份代码你至少要记住什么"></a>5. 这份代码你至少要记住什么</h4><ul>
+<li>多次出栈时，每次都是当前栈顶先出去</li>
+<li><code>Length</code> 对链栈来说必须遍历计算</li>
+<li><code>Clear</code> 本质上是把整条链表逐个释放</li>
+</ul>
+<h3 id="示例4：链队列信息管理案例（3-4-cpp）"><a href="#示例4：链队列信息管理案例（3-4-cpp）" class="headerlink" title="示例4：链队列信息管理案例（3-4.cpp）"></a>示例4：链队列信息管理案例（<code>3-4.cpp</code>）</h3><p>这个程序把链队列应用到了一个简单的信息收集、查看和删除场景中。它比前几个例子难很多，建议你先把它当成”看懂队列思想”，不要一上来要求自己把每个细节都吃透。</p>
+<pre><code class="language-cpp">#define MAXNUM 70
+#define FALSE 0
+#define TRUE 1
+
+#include &quot;stdio.h&quot;
+#include &quot;stdlib.h&quot;
+#include &quot;string.h&quot;
+
+typedef struct Qnode {
+    char data[MAXNUM];
+    struct Qnode *next;
+} Qnodetype;
+
+typedef struct {
+    Qnodetype *front;
+    Qnodetype *rear;
+    int number;
+} Lqueue;
+
+int initLqueue(Lqueue **q) {
+    if (((*q)-&gt;front = (Qnodetype*)malloc(sizeof(Qnodetype))) == NULL)
+        return FALSE;
+    (*q)-&gt;rear = (*q)-&gt;front;
+    strcpy((*q)-&gt;front-&gt;data, &quot;head&quot;);
+    (*q)-&gt;front-&gt;next = NULL;
+    (*q)-&gt;number = 0;
+    return TRUE;
+}
+
+int LInQueue(Lqueue *q, char x[]) {
+    Qnodetype *p;
+    if ((p = (Qnodetype*)malloc(sizeof(Qnodetype))) == NULL)
+        return FALSE;
+    strcpy(p-&gt;data, x);
+    p-&gt;next = NULL;
+    q-&gt;rear-&gt;next = p;
+    q-&gt;rear = p;
+    return TRUE;
+}
+
+char* LOutQueue(Lqueue *q) {
+    char x[MAXNUM];
+    Qnodetype *p;
+    if (q-&gt;front-&gt;next == NULL) return NULL;
+    p = q-&gt;front-&gt;next;
+    q-&gt;front-&gt;next = p-&gt;next;
+    if (p-&gt;next == NULL) q-&gt;rear = q-&gt;front;
+    strcpy(x, p-&gt;data);
+    free(p);
+    return x;
+}
+
+void get(Lqueue *q, char x[]) {
+    int n;
+    if (q-&gt;number == 20) {
+        LOutQueue(q);
+        q-&gt;number--;
+    }
+    LInQueue(q, x);
+    q-&gt;number++;
+}
+
+void deleteall(Lqueue *q) {
+    while (q-&gt;front != q-&gt;rear)
+        LOutQueue(q);
+    q-&gt;number = 0;
+}
+
+void deleteone(Lqueue *q, int n) {
+    Lqueue *p;
+    Qnodetype *s;
+    int i;
+    p = q;
+    i = 1;
+    while (i &lt; n) {
+        p-&gt;front = p-&gt;front-&gt;next;
+        i = i + 1;
+    }
+    s = p-&gt;front-&gt;next;
+    p-&gt;front-&gt;next = p-&gt;front-&gt;next-&gt;next;
+    free(s);
+    q-&gt;number--;
+}
+
+void displayall(Lqueue *q) {
+    Lqueue *p;
+    char x[MAXNUM];
+    p = q;
+    while (p-&gt;front != q-&gt;rear) {
+        p-&gt;front = p-&gt;front-&gt;next;
+        printf(&quot;%s\n&quot;, p-&gt;front-&gt;data);
+    }
+    printf(&quot;\n&quot;);
+}
+
+void displayone(Lqueue *q, int n) {
+    Lqueue *p;
+    Qnodetype *s;
+    int i;
+    p = q;
+    i = 1;
+    while (i &lt; n) {
+        p-&gt;front = p-&gt;front-&gt;next;
+        i = i + 1;
+    }
+    s = p-&gt;front-&gt;next;
+    printf(&quot;%s\n&quot;, s-&gt;data);
+}
+
+void main() {
+    Lqueue *Lp;
+    int i;
+    Qnodetype *headnode;
+    char command, ch[MAXNUM];
+    initLqueue(&amp;Lp);
+    headnode = Lp-&gt;front;
+
+    while (1) {
+        printf(&quot;Get information(%d), please enter R\n&quot;, Lp-&gt;number);
+        printf(&quot;Display one information(%d), please enter L\n&quot;, Lp-&gt;number);
+        printf(&quot;Display all information(%d), please enter A\n&quot;, Lp-&gt;number);
+        printf(&quot;Delete one information(%d), please enter D\n&quot;, Lp-&gt;number);
+        printf(&quot;Delete all information(%d), please enter U\n&quot;, Lp-&gt;number);
+        printf(&quot;Quit, please enter Q\n&quot;);
+        printf(&quot;please input command:&quot;);
+        scanf(&quot;%c&quot;, &amp;command);
+        switch (command) {
+            case &#39;r&#39;:
+            case &#39;R&#39;:
+                gets(ch);
+                Lp-&gt;front = headnode;
+                get(Lp, ch);
+                break;
+
+            case &#39;l&#39;:
+            case &#39;L&#39;:
+                printf(&quot;enter No.:&quot;);
+                scanf(&quot;%d&quot;, &amp;i);
+                Lp-&gt;front = headnode;
+                displayone(Lp, i);
+                break;
+
+            case &#39;a&#39;:
+            case &#39;A&#39;:
+                Lp-&gt;front = headnode;
+                displayall(Lp);
+                break;
+
+            case &#39;d&#39;:
+            case &#39;D&#39;:
+                printf(&quot;enter No.:&quot;);
+                scanf(&quot;%d&quot;, &amp;i);
+                Lp-&gt;front = headnode;
+                deleteone(Lp, i);
+                break;
+
+            case &#39;u&#39;:
+            case &#39;U&#39;:
+                Lp-&gt;front = headnode;
+                deleteall(Lp);
+                break;
+
+            case &#39;q&#39;:
+            case &#39;Q&#39;:
+                printf(&quot;quit!&quot;);
+        }
+        if (command == &#39;q&#39; || command == &#39;Q&#39;) break;
+    }
+}
+</code></pre>
+<h4 id="1-这份程序想解决什么问题"><a href="#1-这份程序想解决什么问题" class="headerlink" title="1. 这份程序想解决什么问题"></a>1. 这份程序想解决什么问题</h4><p>它模拟了一个“信息排队处理”的小系统，能做这些事：</p>
+<ul>
+<li>接收一条新信息</li>
+<li>查看第 <code>n</code> 条信息</li>
+<li>查看全部信息</li>
+<li>删除第 <code>n</code> 条信息</li>
+<li>清空全部信息</li>
+</ul>
+<p>你可以把它想成一个“最多保留 20 条记录的小消息队列”。</p>
+<h4 id="2-先抓住最核心的数据结构"><a href="#2-先抓住最核心的数据结构" class="headerlink" title="2. 先抓住最核心的数据结构"></a>2. 先抓住最核心的数据结构</h4><pre><code class="language-cpp">typedef struct Qnode
+{
+    char data[MAXNUM];
+    struct Qnode *next;
+} Qnodetype;
+</code></pre>
+<p>这表示每个结点里放的是一个字符串，而不是单个字符或整数。</p>
+<pre><code class="language-cpp">typedef struct 
+{ 
+    Qnodetype *front;
+    Qnodetype *rear; 
+    int number;
+} Lqueue;
+</code></pre>
+<p>这里：</p>
+<ul>
+<li><code>front</code>：队头指针</li>
+<li><code>rear</code>：队尾指针</li>
+<li><code>number</code>：当前队列里有几条信息</li>
+</ul>
+<h4 id="3-你只需要先看懂两个核心函数"><a href="#3-你只需要先看懂两个核心函数" class="headerlink" title="3. 你只需要先看懂两个核心函数"></a>3. 你只需要先看懂两个核心函数</h4><h5 id="入队：LInQueue"><a href="#入队：LInQueue" class="headerlink" title="入队：LInQueue"></a>入队：<code>LInQueue</code></h5><pre><code class="language-cpp">q-&gt;rear-&gt;next = p;
+q-&gt;rear = p;
+</code></pre>
+<p>意思很简单：</p>
+<ol>
+<li>原来的队尾结点后面接上新结点 <code>p</code></li>
+<li>队尾指针后移，改成指向 <code>p</code></li>
+</ol>
+<p>这就是链队列的标准入队动作。</p>
+<h5 id="出队：LOutQueue"><a href="#出队：LOutQueue" class="headerlink" title="出队：LOutQueue"></a>出队：<code>LOutQueue</code></h5><pre><code class="language-cpp">p = q-&gt;front-&gt;next;
+q-&gt;front-&gt;next = p-&gt;next;
+if (p-&gt;next == NULL) q-&gt;rear = q-&gt;front;
+free(p);
+</code></pre>
+<p>意思是：</p>
+<ol>
+<li>找到第一个真正的数据结点 <code>p</code></li>
+<li>让头结点直接跳过它，接到下一个结点上</li>
+<li>如果删掉的是最后一个数据结点，就把 <code>rear</code> 调回头结点</li>
+<li>释放这个被删结点</li>
+</ol>
+<h4 id="4-get-函数为什么很像“消息缓冲区”"><a href="#4-get-函数为什么很像“消息缓冲区”" class="headerlink" title="4. get 函数为什么很像“消息缓冲区”"></a>4. <code>get</code> 函数为什么很像“消息缓冲区”</h4><pre><code class="language-cpp">if (q-&gt;number == 20)
+{
+    LOutQueue(q);
+    q-&gt;number--;
+}
+LInQueue(q, x);
+q-&gt;number++;
+</code></pre>
+<p>这段逻辑非常值得记：</p>
+<ul>
+<li>如果已经满 20 条，就先删掉最旧的一条</li>
+<li>然后把新信息放进来</li>
+</ul>
+<p>这其实就是一个“先进先出的固定容量缓冲区”。</p>
+<p>生活里可以把它理解成：</p>
+<ul>
+<li>留言板最多显示 20 条</li>
+<li>新留言来了，最早那条先被挤掉</li>
+</ul>
+<h4 id="5-为什么这份代码难读"><a href="#5-为什么这份代码难读" class="headerlink" title="5. 为什么这份代码难读"></a>5. 为什么这份代码难读</h4><p>因为它不只是基础队列操作，还掺杂了：</p>
+<ul>
+<li>字符串处理</li>
+<li>菜单交互</li>
+<li>按编号显示或删除</li>
+<li>比较早期的 C 写法</li>
+</ul>
+<p>所以真正的学习顺序应该是：</p>
+<ol>
+<li>先只看它怎么入队、怎么出队</li>
+<li>再看 <code>number</code> 怎么控制上限</li>
+<li>最后再看菜单部分</li>
+</ol>
+<h4 id="6-这份代码里有哪些地方你先知道就好"><a href="#6-这份代码里有哪些地方你先知道就好" class="headerlink" title="6. 这份代码里有哪些地方你先知道就好"></a>6. 这份代码里有哪些地方你先知道就好</h4><ul>
+<li><code>malloc</code> &#x2F; <code>free</code>：和 <code>new</code> &#x2F; <code>delete</code> 类似，都是申请和释放内存</li>
+<li><code>strcpy</code>：把字符串复制到字符数组里</li>
+<li><code>scanf</code>、<code>printf</code>：标准输入输出</li>
+<li><code>switch</code>：根据用户输入的命令执行不同操作</li>
+</ul>
+<h4 id="7-这份程序你真正要学到什么"><a href="#7-这份程序你真正要学到什么" class="headerlink" title="7. 这份程序你真正要学到什么"></a>7. 这份程序你真正要学到什么</h4><ul>
+<li>链队列不只能存数字，也可以存字符串、记录等更复杂的数据</li>
+<li>队列特别适合处理“按先后顺序进入、按先后顺序淘汰”的问题</li>
+<li>当你觉得代码太长时，要先找“入队”和“出队”这两个核心动作</li>
+</ul>
+<h4 id="8-补充说明"><a href="#8-补充说明" class="headerlink" title="8. 补充说明"></a>8. 补充说明</h4><p>你说得对，这类代码来自 Windows XP &#x2F; 旧教材环境很常见，所以编码问题本身不用纠结。真正需要注意的是：这段代码里有一些老式写法和不够安全的写法，适合作为课堂示例，不适合作为现代工程模板直接照搬。</p>
+<h3 id="示例5：链队列整数入队出队（3-6-cpp）"><a href="#示例5：链队列整数入队出队（3-6-cpp）" class="headerlink" title="示例5：链队列整数入队出队（3-6.cpp）"></a>示例5：链队列整数入队出队（<code>3-6.cpp</code>）</h3><p>这个程序是较为简洁的链队列实现，适合用来理解队头和队尾指针的变化。相比示例4，它更适合初学者入门。</p>
+<pre><code class="language-cpp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+typedef struct {
+    Node* front;
+    Node* rear;
+} Queue;
+
+void initQueue(Queue* q) {
+    q-&gt;front = q-&gt;rear = NULL;
+}
+
+void enqueue(Queue* q, int value) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    if (!newNode) {
+        printf(&quot;Memory allocation failed.\n&quot;);
+        return;
+    }
+    newNode-&gt;data = value;
+    newNode-&gt;next = NULL;
+    if (q-&gt;rear == NULL) {
+        q-&gt;front = q-&gt;rear = newNode;
+    } else {
+        q-&gt;rear-&gt;next = newNode;
+        q-&gt;rear = newNode;
+    }
+}
+
+int dequeue(Queue* q) {
+    if (q-&gt;front == NULL) {
+        printf(&quot;Queue is empty.\n&quot;);
+        return -1;
+    }
+    Node* temp = q-&gt;front;
+    int data = temp-&gt;data;
+    q-&gt;front = q-&gt;front-&gt;next;
+    free(temp);
+    if (q-&gt;front == NULL) {
+        q-&gt;rear = NULL;
+    }
+    return data;
+}
+
+int isEmpty(Queue* q) {
+    return q-&gt;front == NULL;
+}
+
+void main() {
+    Queue q;
+    initQueue(&amp;q);
+    enqueue(&amp;q, 10);
+    enqueue(&amp;q, 20);
+    printf(&quot;Dequeued: %d\n&quot;, dequeue(&amp;q));
+    printf(&quot;Dequeued: %d\n&quot;, dequeue(&amp;q));
+    if (isEmpty(&amp;q)) {
+        printf(&quot;Queue is empty.\n&quot;);
+    } else {
+        printf(&quot;Queue is not empty.\n&quot;);
+    }
+}
+</code></pre>
+<h4 id="1-这份代码为什么推荐先看"><a href="#1-这份代码为什么推荐先看" class="headerlink" title="1. 这份代码为什么推荐先看"></a>1. 这份代码为什么推荐先看</h4><p>因为它只做最核心的事：</p>
+<ul>
+<li>初始化队列</li>
+<li>入队</li>
+<li>出队</li>
+<li>判断空队列</li>
+</ul>
+<p>没有复杂菜单，也没有字符串处理，所以特别适合第一次接触链队列的人。</p>
+<h4 id="2-结构体到底表示什么"><a href="#2-结构体到底表示什么" class="headerlink" title="2. 结构体到底表示什么"></a>2. 结构体到底表示什么</h4><pre><code class="language-cpp">typedef struct Node 
+{
+    int data;
+    struct Node* next;
+} Node;
+</code></pre>
+<p>这是链表结点：</p>
+<ul>
+<li><code>data</code> 存整数</li>
+<li><code>next</code> 指向下一个结点</li>
+</ul>
+<pre><code class="language-cpp">typedef struct 
+{
+    Node* front;
+    Node* rear;
+} Queue;
+</code></pre>
+<p>这是整个队列：</p>
+<ul>
+<li><code>front</code> 指向队头结点</li>
+<li><code>rear</code> 指向队尾结点</li>
+</ul>
+<h4 id="3-初始化为什么都设成-NULL"><a href="#3-初始化为什么都设成-NULL" class="headerlink" title="3. 初始化为什么都设成 NULL"></a>3. 初始化为什么都设成 <code>NULL</code></h4><pre><code class="language-cpp">q-&gt;front = q-&gt;rear = NULL;
+</code></pre>
+<p>这表示现在连一个结点都没有，所以：</p>
+<ul>
+<li>队头不存在</li>
+<li>队尾也不存在</li>
+</ul>
+<h4 id="4-入队为什么要分两种情况"><a href="#4-入队为什么要分两种情况" class="headerlink" title="4. 入队为什么要分两种情况"></a>4. 入队为什么要分两种情况</h4><pre><code class="language-cpp">if (q-&gt;rear == NULL)
+{
+    q-&gt;front = q-&gt;rear = newNode;
+}
+else
+{
+    q-&gt;rear-&gt;next = newNode;
+    q-&gt;rear = newNode;
+}
+</code></pre>
+<p>这是因为“空队列”和“非空队列”不一样。</p>
+<h5 id="情况一：原来是空队列"><a href="#情况一：原来是空队列" class="headerlink" title="情况一：原来是空队列"></a>情况一：原来是空队列</h5><p>一个元素入队后，它既是队头，也是队尾，所以：</p>
+<pre><code class="language-text">front = rear = newNode
+</code></pre>
+<h5 id="情况二：原来不是空队列"><a href="#情况二：原来不是空队列" class="headerlink" title="情况二：原来不是空队列"></a>情况二：原来不是空队列</h5><p>那就把新结点接到原队尾后面，再更新队尾：</p>
+<pre><code class="language-text">原来: front -&gt; [10] -&gt; [20]
+入队30后: front -&gt; [10] -&gt; [20] -&gt; [30]
+                              ^
+                             rear
+</code></pre>
+<h4 id="5-出队为什么也要特别判断"><a href="#5-出队为什么也要特别判断" class="headerlink" title="5. 出队为什么也要特别判断"></a>5. 出队为什么也要特别判断</h4><pre><code class="language-cpp">Node* temp = q-&gt;front;
+int data = temp-&gt;data;
+q-&gt;front = q-&gt;front-&gt;next;
+free(temp);
+if (q-&gt;front == NULL)
+{
+    q-&gt;rear = NULL;
+}
+</code></pre>
+<p>前面几步都不难：</p>
+<ol>
+<li>记住原队头</li>
+<li>取出它的数据</li>
+<li>队头后移</li>
+<li>释放旧队头</li>
+</ol>
+<p>最关键的是最后的判断：</p>
+<ul>
+<li>如果队头已经变成 <code>NULL</code></li>
+<li>说明最后一个结点也被删掉了</li>
+<li>这时队尾也必须一起改成 <code>NULL</code></li>
+</ul>
+<p>不然就会出现“队列明明空了，但 <code>rear</code> 还指着旧地址”的错误。</p>
+<h4 id="6-用程序里的数据手动跑一遍"><a href="#6-用程序里的数据手动跑一遍" class="headerlink" title="6. 用程序里的数据手动跑一遍"></a>6. 用程序里的数据手动跑一遍</h4><p>主函数里做的是：</p>
+<pre><code class="language-cpp">enqueue(&amp;q, 10);
+enqueue(&amp;q, 20);
+dequeue(&amp;q);
+dequeue(&amp;q);
+</code></pre>
+<p>过程如下：</p>
+<p>第一步，入队 <code>10</code>：</p>
+<pre><code class="language-text">front -&gt; [10] &lt;- rear
+</code></pre>
+<p>第二步，入队 <code>20</code>：</p>
+<pre><code class="language-text">front -&gt; [10] -&gt; [20] &lt;- rear
+</code></pre>
+<p>第三步，出队一次：</p>
+<ul>
+<li>取出 <code>10</code></li>
+<li>队列变成：</li>
+</ul>
+<pre><code class="language-text">front -&gt; [20] &lt;- rear
+</code></pre>
+<p>第四步，再出队一次：</p>
+<ul>
+<li>取出 <code>20</code></li>
+<li>队列变空：</li>
+</ul>
+<pre><code class="language-text">front = NULL, rear = NULL
+</code></pre>
+<p>所以最后 <code>isEmpty(&amp;q)</code> 返回真。</p>
+<h4 id="7-这份代码你至少要记住什么"><a href="#7-这份代码你至少要记住什么" class="headerlink" title="7. 这份代码你至少要记住什么"></a>7. 这份代码你至少要记住什么</h4><ul>
+<li>链队列入队是在尾部接新结点</li>
+<li>出队是在头部删结点</li>
+<li>第一个入队元素会同时成为 <code>front</code> 和 <code>rear</code></li>
+<li>最后一个元素出队后，<code>front</code> 和 <code>rear</code> 都要变成 <code>NULL</code></li>
+</ul>
+<h3 id="示例6：循环顺序队列整数示例（3-7-cpp）"><a href="#示例6：循环顺序队列整数示例（3-7-cpp）" class="headerlink" title="示例6：循环顺序队列整数示例（3-7.cpp）"></a>示例6：循环顺序队列整数示例（<code>3-7.cpp</code>）</h3><p>这个程序用整型数组实现循环队列，展示了入队、出队、取队头等操作。它和示例2本质一样，只是写法更接近现在常见的 C&#x2F;C++ 教学代码。</p>
+<pre><code class="language-cpp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define MAX_SIZE 100
+
+typedef struct {
+    int data[MAX_SIZE];
+    int front;
+    int rear;
+} Queue;
+
+void initQueue(Queue *q) {
+    q-&gt;front = 0;
+    q-&gt;rear = 0;
+}
+
+bool isEmpty(Queue *q) {
+    return q-&gt;front == q-&gt;rear;
+}
+
+bool isFull(Queue *q) {
+    return (q-&gt;rear + 1) % MAX_SIZE == q-&gt;front;
+}
+
+bool enqueue(Queue *q, int element) {
+    if (isFull(q)) {
+        return false;
+    }
+    q-&gt;data[q-&gt;rear] = element;
+    q-&gt;rear = (q-&gt;rear + 1) % MAX_SIZE;
+    return true;
+}
+
+bool dequeue(Queue *q, int *element) {
+    if (isEmpty(q)) {
+        return false;
+    }
+    *element = q-&gt;data[q-&gt;front];
+    q-&gt;front = (q-&gt;front + 1) % MAX_SIZE;
+    return true;
+}
+
+bool getFront(Queue *q, int *element) {
+    if (isEmpty(q)) {
+        return false;
+    }
+    *element = q-&gt;data[q-&gt;front];
+    return true;
+}
+
+void main() {
+    Queue q;
+    initQueue(&amp;q);
+    enqueue(&amp;q, 10);
+    enqueue(&amp;q, 20);
+    int frontElement;
+    if (getFront(&amp;q, &amp;frontElement)) {
+        printf(&quot;Front element: %d\n&quot;, frontElement);
+    } else {
+        printf(&quot;Queue is empty.\n&quot;);
+    }
+    int dequeuedElement;
+    if (dequeue(&amp;q, &amp;dequeuedElement)) {
+        printf(&quot;Dequeued element: %d\n&quot;, dequeuedElement);
+        printf(&quot;New front element: %d\n&quot;, frontElement);
+    } else {
+        printf(&quot;Queue is empty.\n&quot;);
+    }
+}
+</code></pre>
+<h4 id="1-这份代码和示例2有什么关系"><a href="#1-这份代码和示例2有什么关系" class="headerlink" title="1. 这份代码和示例2有什么关系"></a>1. 这份代码和示例2有什么关系</h4><p>如果你已经大致看懂示例2，那么这份代码其实是在重复同一件事：</p>
+<ul>
+<li>用数组实现队列</li>
+<li>用 <code>front</code> 和 <code>rear</code> 管理队头队尾</li>
+<li>用 <code>% MAX_SIZE</code> 实现“循环”</li>
+</ul>
+<p>不同点主要是：</p>
+<ul>
+<li>它存的是 <code>int</code></li>
+<li>它用了 <code>bool</code> 返回成功或失败</li>
+<li>它把函数名字写得更直白一些</li>
+</ul>
+<h4 id="2-bool-返回值是什么意思"><a href="#2-bool-返回值是什么意思" class="headerlink" title="2. bool 返回值是什么意思"></a>2. <code>bool</code> 返回值是什么意思</h4><p>例如：</p>
+<pre><code class="language-cpp">bool enqueue(Queue *q, int element)
+</code></pre>
+<p>表示这个函数执行后，会返回：</p>
+<ul>
+<li><code>true</code>：成功</li>
+<li><code>false</code>：失败</li>
+</ul>
+<p>所以这份代码比返回 <code>0/1</code> 更直观一点。</p>
+<h4 id="3-先盯住三个函数"><a href="#3-先盯住三个函数" class="headerlink" title="3. 先盯住三个函数"></a>3. 先盯住三个函数</h4><h5 id="enqueue"><a href="#enqueue" class="headerlink" title="enqueue"></a><code>enqueue</code></h5><pre><code class="language-cpp">q-&gt;data[q-&gt;rear] = element;
+q-&gt;rear = (q-&gt;rear + 1) % MAX_SIZE;
+</code></pre>
+<p>意思是：</p>
+<ul>
+<li>把元素放进 <code>rear</code> 指向的位置</li>
+<li>然后让 <code>rear</code> 后移一格</li>
+</ul>
+<h5 id="dequeue"><a href="#dequeue" class="headerlink" title="dequeue"></a><code>dequeue</code></h5><pre><code class="language-cpp">*element = q-&gt;data[q-&gt;front];
+q-&gt;front = (q-&gt;front + 1) % MAX_SIZE;
+</code></pre>
+<p>意思是：</p>
+<ul>
+<li>从队头取出一个元素</li>
+<li>再让 <code>front</code> 往后移动</li>
+</ul>
+<h5 id="getFront"><a href="#getFront" class="headerlink" title="getFront"></a><code>getFront</code></h5><pre><code class="language-cpp">*element = q-&gt;data[q-&gt;front];
+</code></pre>
+<p>意思是：只看当前队头是谁，但不把它删掉。</p>
+<h4 id="4-为什么参数里有-int-element"><a href="#4-为什么参数里有-int-element" class="headerlink" title="4. 为什么参数里有 int *element"></a>4. 为什么参数里有 <code>int *element</code></h4><p>这说明函数不只是“知道队头是什么”，还要把值带回给主函数。</p>
+<p>可以理解成：</p>
+<ul>
+<li>主函数准备了一个变量 <code>frontElement</code></li>
+<li>把它的地址传给函数</li>
+<li>函数把结果写回那个变量里</li>
+</ul>
+<p>所以：</p>
+<pre><code class="language-cpp">getFront(&amp;q, &amp;frontElement)
+</code></pre>
+<p>意思就是“请把队头元素写到 <code>frontElement</code> 里”。</p>
+<h4 id="5-用主函数手动模拟一遍"><a href="#5-用主函数手动模拟一遍" class="headerlink" title="5. 用主函数手动模拟一遍"></a>5. 用主函数手动模拟一遍</h4><p>主函数里：</p>
+<pre><code class="language-cpp">enqueue(&amp;q, 10);
+enqueue(&amp;q, 20);
+</code></pre>
+<p>此时队列可以理解成：</p>
+<pre><code class="language-text">[10, 20]
+front = 0
+rear = 2
+</code></pre>
+<p>执行：</p>
+<pre><code class="language-cpp">getFront(&amp;q, &amp;frontElement)
+</code></pre>
+<p>得到：</p>
+<pre><code class="language-text">frontElement = 10
+</code></pre>
+<p>然后执行：</p>
+<pre><code class="language-cpp">dequeue(&amp;q, &amp;dequeuedElement)
+</code></pre>
+<p>得到：</p>
+<ul>
+<li><code>dequeuedElement = 10</code></li>
+<li><code>front</code> 后移</li>
+<li>现在真正的队头应该变成 <code>20</code></li>
+</ul>
+<h4 id="6-这个程序里有个小问题"><a href="#6-这个程序里有个小问题" class="headerlink" title="6. 这个程序里有个小问题"></a>6. 这个程序里有个小问题</h4><p>程序写的是：</p>
+<pre><code class="language-cpp">printf(&quot;New front element: %d\n&quot;, frontElement);
+</code></pre>
+<p>但这里的 <code>frontElement</code> 还是出队前保存的旧值，也就是 <code>10</code>。如果真的想输出“新的队头元素”，应该再调用一次：</p>
+<pre><code class="language-cpp">getFront(&amp;q, &amp;frontElement);
+</code></pre>
+<p>然后再打印，这样才会得到 <code>20</code>。</p>
+<h4 id="7-这份代码你至少要记住什么-1"><a href="#7-这份代码你至少要记住什么-1" class="headerlink" title="7. 这份代码你至少要记住什么"></a>7. 这份代码你至少要记住什么</h4><ul>
+<li>它本质上就是示例2的整型版本</li>
+<li><code>getFront</code> 是“查看”，<code>dequeue</code> 是“删除并取出&#96;</li>
+<li>指针参数 <code>int *element</code> 的作用是把结果带回函数外面</li>
+<li>出队后如果想看新的队头，要重新调用 <code>getFront</code></li>
+</ul>
+<hr>
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><p>本章主要掌握以下内容：</p>
+<ol>
+<li>栈和队列本质上都是操作受限的线性表</li>
+<li>栈的特点是后进先出，队列的特点是先进先出</li>
+<li>栈可以采用顺序存储或链式存储实现</li>
+<li>队列可以采用循环顺序存储或链式存储实现</li>
+<li>循环队列是解决顺序队列假溢出的经典方法</li>
+<li>栈常用于递归、表达式、括号匹配，队列常用于缓冲、调度和排队处理</li>
+</ol>
+<p>只要抓住“受限线性表”和“操作规则”这两个关键词，本章内容就不难理解。</p>
+
+        </div>
+        
+        
+        
+        
+        <div id="comment">
+            <div id="giscus-container" class="giscus"></div>
+        </div>
+        
+        
+        
+        
+    </div>
+</div>
+<aside class="toc-sidebar">
+    <div class="toc-title">目录</div>
+    <nav class="toc-nav"></nav>
+</aside>
+<button class="toc-floating-btn" @click="tocDrawerOpen = true">
+    <i class="fa-solid fa-list-ul"></i>
+</button>
+<transition name="fade">
+    <div class="toc-drawer-mask" v-show="tocDrawerOpen" @click="tocDrawerOpen = false"></div>
+</transition>
+<transition name="slide-right">
+    <div class="toc-drawer" v-show="tocDrawerOpen">
+        <div class="toc-drawer-title">目录<i class="fa-solid fa-xmark" @click="tocDrawerOpen = false"></i></div>
+        <nav class="toc-drawer-nav"></nav>
+    </div>
+</transition>
+
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 SerinaP&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;芹菜P
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/Serina765P/hexo-theme-particlexplus">ParticleX Plus Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="Serina765P/SerinaP-Blog"
+    data-repo-id="R_kgDOQi6hvw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQi6hv84CzbAr"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
